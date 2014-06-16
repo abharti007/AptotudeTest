@@ -1,0 +1,36 @@
+<apex:page controller="sds.Setupcustomobjectscontroller" tabStyle="Data_Shield__tab">
+  
+  <apex:sectionHeader subtitle="Add Custom Object" title="Stratus"/>
+<apex:form id="frmMyDSRules">
+    <apex:pageBlock helpTitle="Data Cleanser Help" helpUrl="https://stratuscloudsolutions.secure.force.com/HelpDataCleanser">
+
+<apex:pageBlockButtons >
+ <apex:commandButton action="{!UpdateCrossObject}" value="Submit" />
+ <apex:commandButton action="{!CancelClick}" value="Cancel" />
+ 
+</apex:pageBlockButtons>
+       <apex:pageMessages ></apex:pageMessages>
+       
+        <apex:pageblocksection id="CScenario">                
+               <apex:pageBlockSectionItem >
+                <apex:outputLabel for="objectType"> Choose Object  </apex:outputLabel>
+                    <apex:selectList value="{!selectedObject}" size="1" id="objectType">
+                     <apex:selectOptions value="{!objectNames}"/>   
+                     
+                                   
+                    </apex:selectList>
+            </apex:pageBlockSectionItem>
+            
+         </apex:pageBlockSection>            
+      
+        
+
+                  
+        
+
+             
+    </apex:pageBlock>    
+                               
+    
+</apex:form>    
+</apex:page>

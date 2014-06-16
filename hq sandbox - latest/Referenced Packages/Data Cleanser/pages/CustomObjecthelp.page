@@ -1,0 +1,29 @@
+<apex:page tabStyle="Data_Shield__tab">
+   <!-- Begin Default Content REMOVE THIS -->
+   <br />
+   <apex:pageBlock helpTitle="Data Cleanser Help" helpUrl="https://stratuscloudsolutions.secure.force.com/HelpDataCleanser" >
+        <apex:pageBlockSection >            
+            <apex:pageBlockSectionItem >  
+            <apex:image value="{!$Resource.sds__sLogo}" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >  
+                <apex:panelGroup >
+                    
+                     
+                     
+<p>In order to run scenarios on this Custom Object you will need to add two custom fields to this Object. <br />
+<ol>
+<li>The first field to  add is a  Text field entitled <b> 'DC Duplicate Key' API Name(DC_Duplicate_Key)</b> and ensure that it is<b>255</b> characters long.</li>
+<li> The second field to add is a Number Field entitled<b> 'DC Master Score' API Name(DC_Master_Score)</b> and the length should be the standard <b>18</b>. </li>
+ </ol>
+ Once these two fields are created you can then create a scenario on this Object. </p>
+                    
+                </apex:panelGroup>
+            </apex:pageBlockSectionItem>              
+        </apex:pageBlockSection>                    
+    </apex:pageBlock>          
+    
+    
+ 
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

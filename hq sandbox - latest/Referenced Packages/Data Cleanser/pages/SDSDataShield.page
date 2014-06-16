@@ -1,0 +1,137 @@
+<apex:page action="{!PageLoad}"  controller="sds.clsDataShieldMasterRules" 
+title="My Data Shield Rules" tabStyle="Data_Shield__tab">
+  <!-- Begin Default Content REMOVE THIS -->
+    <br />
+<apex:form id="frmMyDSRules">
+<style type="text/css">
+    a.buttonDS
+    {
+background:url({!$Resource.sds__button}) no-repeat;
+display:block;
+color:#555555;
+font-weight:bold;
+height:30px;
+line-height:29px;
+margin-bottom:14px;
+text-decoration:none;
+width:150px;
+font-size:11px;
+
+}
+a:hover.buttonDS{
+color:#0066CC;
+text-decoration:none;
+}
+
+
+/* -------------------- */
+/* CLASSES */
+/* -------------------- */
+.addbut{
+background:url({!$Resource.sds__add}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+.activatebut{
+background:url({!$Resource.sds__activate}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+.deletebut
+{
+background:url({!$Resource.sds__edit}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+.gopro
+{
+background:url({!$Resource.sds__Gopro}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+.Preferences
+{
+background:url({!$Resource.sds__Preferences}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+.bug
+{
+background:url({!$Resource.sds__bug}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+
+
+.crossobject{
+background:url({!$Resource.sds__cross_object_icon}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+
+    </style>
+   
+   <apex:pageBlock helpTitle="Data Cleanser Help" helpUrl="https://stratuscloudsolutions.secure.force.com/HelpDataCleanser" >
+        <apex:pageBlockSection >            
+            <apex:pageBlockSectionItem >  
+            <apex:image value="{!$Resource.sds__sLogo}" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >  
+                <apex:panelGroup ><br/><br/>
+                    
+                     
+                     <apex:commandLink styleClass="buttonDS"  action="{!showActivateScenarioPage}">
+                     <span class="activatebut">Standard Scenarios</span></apex:commandLink>
+
+                <apex:commandLink styleClass="buttonDS"  action="{!ShowCustomScenario}">
+                     <span class="addbut">Custom Scenarios</span></apex:commandLink>
+ 
+
+ <apex:commandLink styleClass="buttonDS"  action="{!GoCrossObject}">
+                     <span class="crossobject">Cross Scenarios</span></apex:commandLink>
+                     
+
+ <apex:commandLink styleClass="buttonDS"  action="{!MasterRules}">
+                     <span class="bug">Merge Results</span></apex:commandLink>
+
+ 
+                   
+     
+     <apex:commandLink styleClass="buttonDS"  action="{!Preferences}">
+                     <span class="Preferences">Preferences</span></apex:commandLink>
+                     
+                     
+                      <apex:commandLink rendered="{!ShowUpdate}" styleClass="buttonDS"  action="{!GoproPage}">
+                     <span class="gopro">Upgrade</span></apex:commandLink>
+                     
+                     
+                     
+                     
+                     
+
+
+                    
+                </apex:panelGroup>
+            </apex:pageBlockSectionItem>              
+        </apex:pageBlockSection>                    
+    </apex:pageBlock>          
+    <apex:inputHidden value="{!MasterRule}" id="hMasterRule"/>         
+    <script type="text/javascript">
+        function MasterRuleDetails(userMasterId)
+        {                    
+            document.getElementById("{!$Component.hMasterRule}").value = userMasterId;
+            //alert(userMasterId);
+            return true;
+        }
+        function setCheckBoxValue()
+        {                    
+            if(document.getElementById("{!$Component.idEnabled}").value == true)
+                alert("Checked");
+            else
+                alert("Not Checked");                
+            return true;
+        }            
+    </script>        
+</apex:form>        
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case Merge App</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <description>This package allow users to merge two Case records from either the Case list view screen or a single Case detail screen.</description>
+    <namespacePrefix>FbD_CM</namespacePrefix>
+    <types>
+        <members>MergeCaseExtension</members>
+        <members>MergeCaseExtensionTests</members>
+        <members>MergeCaseStartController</members>
+        <members>MergeCaseStartControllerTests</members>
+        <members>MultiMergeCaseManager</members>
+        <members>MultiMergeCaseManagerTests</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>MergeCaseManager</members>
+        <members>MergeCaseStartHere</members>
+        <members>MultiMergeCaseManager</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Case_Merge</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Case.Merge_To_Case__c</members>
+        <members>CaseUpdateFields__c.Order__c</members>
+        <members>Case_Merge_History__c.Case__c</members>
+        <members>Case_Merge_History__c.Description__c</members>
+        <members>Case_Merge_History__c.Merge_Case__c</members>
+        <members>MergeFields__c.Order__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>CaseUpdateFields__c</members>
+        <members>Case_Merge_History__c</members>
+        <members>MergeFields__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Case_Merge_Start_Here</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Case_Merge_History__c-Case Merge History Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>AjaxSpinner</members>
+        <members>CMCasesListViewAddButton</members>
+        <members>CMCustomSettings</members>
+        <members>CMNavigateSearchLayout</members>
+        <members>CMPageLayoutAddButton</members>
+        <members>CMProfileSettings</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Case.Merge_Case</members>
+        <members>Case.Merge_Cases</members>
+        <name>WebLink</name>
+    </types>
+    <version>28.0</version>
+</Package>

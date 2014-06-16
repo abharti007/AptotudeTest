@@ -1,0 +1,91 @@
+<apex:page extensions="sds.AccountDuplicateListMergeController"  
+standardController="sds__Duplicate_Group__c">
+   <apex:form >
+        
+   <apex:sectionHeader title="Stratus" subtitle=" Duplicate Groups"/>
+ <apex:pageBlock >
+
+
+    <apex:actionFunction name="OnCheckBoxChange" status="myStatus" action="{!iWantMyJSValues}" rerender="jsvalues">
+            <apex:param name="ItemId" value="" />
+            <apex:param name="ItemType" value="false" />
+    </apex:actionFunction>
+    
+   
+    
+    
+    <apex:outputPanel id="jsvalues">
+         
+        </apex:outputPanel>
+
+  <apex:pageMessages id="ErrorMsg" ></apex:pageMessages>
+
+<apex:pageBlockButtons location="top" >
+     <apex:actionStatus startText="Please wait..." id="myStatus">
+        <apex:facet name="stop">
+          <apex:commandButton action="{!OnMergeGroup}" value="Merge Group"/>
+        </apex:facet>
+    </apex:actionStatus>
+</apex:PageBlockButtons>
+ 
+
+<apex:pageBlockTable value="{!ListAccount}" rendered="{!NOT(ISNULL(ListAccount))}" var="a"  >
+<apex:column >
+<apex:facet name="header">Merge Objects</apex:facet>
+<input type="checkbox" checked="true" onclick="OnCheckBoxChange('{!a.Id}',this.checked)" />
+</apex:column>
+<apex:column >
+<apex:facet name="header">Account Name</apex:facet>
+<a href="/{!a.Id}" target="_blank" >{!a.Name}</a>
+</apex:column>
+<apex:column value="{!a.BillingCity}"></apex:column>
+<apex:column value="{!a.Phone}"></apex:column>
+</apex:pageBlockTable>
+
+<apex:pageBlockTable rendered="{!NOT(ISNULL(Listlead))}" value="{!Listlead}" var="l"  >
+<apex:column >
+<apex:facet name="header">Merge Objects</apex:facet>
+<input type="checkbox" checked="true" onclick="OnCheckBoxChange('{!l.Id}',this.checked)" />
+</apex:column>
+<apex:column >
+<apex:facet name="header">Account Name</apex:facet><a target="_blank"  href="/{!l.Id}" >{!l.Name}</a>
+</apex:column>
+<apex:column value="{!l.Phone}"></apex:column>
+<apex:column value="{!l.Email}"></apex:column>
+<apex:column value="{!l.Company}"></apex:column>
+
+</apex:pageBlockTable>
+
+<apex:pageBlockTable rendered="{!NOT(ISNULL(ListContact))}" value="{!ListContact}" var="c"  >
+<apex:column >
+<apex:facet name="header">Merge Objects</apex:facet>
+<input type="checkbox" checked="true" onclick="OnCheckBoxChange('{!c.Id}',this.checked)" />
+</apex:column>
+<apex:column >
+<apex:facet name="header">Contact Name</apex:facet>
+<a href="/{!c.Id}" target="_blank"  >{!c.Name}</a>
+</apex:column>
+
+<apex:column value="{!c.Phone}"></apex:column>
+<apex:column value="{!c.Email}"></apex:column>
+<apex:column value="{!c.Account.Name}"></apex:column>
+
+</apex:pageBlockTable>
+
+
+
+
+
+</apex:pageBlock>
+ <script type="text/javascript">
+ 
+function stopwatch(NewURL) 
+{
+    window.location.href=NewURL;
+ }
+
+ 
+ </script>
+</apex:form>
+
+</apex:page>

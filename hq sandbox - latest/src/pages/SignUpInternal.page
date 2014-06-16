@@ -1,0 +1,14 @@
+<apex:page standardController="Opportunity" extensions="SignUpInternal">
+  <flow:interview name="Sign_Up_Internal" interview="{!flowWizard}" finishLocation="{!finishlocation}" >
+        <apex:param name="varContactFirstName" value="{!objContact.FirstName}"/> 
+          <apex:param name="varContactLastName" value="{!objContact.LastName}"/> 
+           <apex:param name="varContactEmail" value="{!objContact.Email}"/> 
+            <apex:param name="varContactCountry" value="{!objContact.MailingCountry}"/>
+              <apex:param name="varContactCompany" value="{!objContact.Company__c }"/> 
+                <apex:param name="varContactPhone" value="{!objContact.Phone}"/> 
+                  <apex:param name="varOpportunityName" value="{!objOpp.ID}"/> 
+                   <apex:param name="varOpportunityAccountName" value="{!objOpp.AccountId}"/>  
+                                                     
+    </flow:interview>
+    
+</apex:page>

@@ -1,0 +1,140 @@
+<apex:page id="pg" standardController="Case" extensions="FbD_CM.MergeCaseExtension">
+    <apex:sectionHeader title="Case Management" subtitle="Merge Case"/>
+
+    <apex:form id="frm">
+        <apex:pageBlock id="pb" title="Case Management" mode="edit">
+            <apex:pageMessages id="errorMessages"/>
+            
+            <apex:pageBlockSection collapsible="false" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Merge To Case"/>
+                    <apex:outputPanel >
+                        <apex:inputField value="{!mergeFromCase.FbD_CM__Merge_To_Case__c}"/>
+                        <apex:commandButton value="Update" style="margin-left:15px"
+                            action="{!updateMergeToCase}" status="mergeToCaseStatus" reRender="mergeToPanel, errorMessages"/>
+                        <apex:actionStatus id="mergeToCaseStatus" startText="" startStyle="padding:1px 10px;background: no-repeat url('{!$Resource.FbD_CM__AjaxSpinner}')"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection>
+            
+            <apex:outputPanel id="mergeToPanel">
+                <apex:actionRegion >
+                    <apex:pageBlockSection title="Account Detail (Merge From Case)" collapsible="false"
+                        rendered="{!OR(AND(NOT(toIdIncluded), mergeFromCase.FbD_CM__Merge_To_Case__c != null), AND(toIdIncluded, mergeToCase.Id != null))}">
+                        <apex:outputField value="{!mergeFromCase.Account.Name}"/>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Owner Name"/>
+                            <apex:outputText value="{!mergeFromCase.Account.Owner.Name}"/>
+                        </apex:pageBlockSectionItem>
+                        <apex:outputField value="{!mergeFromCase.Account.CreatedDate}"/>
+                        <apex:outputField value="{!mergeFromCase.Account.LastModifiedDate}"/>
+                    </apex:pageBlockSection>
+                
+                    <apex:pageBlockSection title="Merge Case Options" collapsible="false"
+                        rendered="{!OR(AND(NOT(toIdIncluded), mergeFromCase.FbD_CM__Merge_To_Case__c != null), AND(toIdIncluded, mergeToCase.Id != null))}">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Move Activities/History?"/>
+                            <apex:inputCheckbox value="{!includeTasks}"/>    
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Copy Case Comments?"/>
+                            <apex:inputCheckbox value="{!includeComments}"/>    
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem helpText="How should the Merge From Case be handled after the merge? If it will be updated a list of fields will be presented to update.">
+                            <apex:outputLabel value="How to Handle Merge From Case"/>
+                            <apex:outputPanel >
+                                <apex:selectList value="{!updateOrDelete}" size="1">
+                                    <apex:selectOption itemLabel="Delete" itemValue="delete"/>
+                                    <apex:selectOption itemLabel="Update" itemValue="update"/>                                
+                                    <apex:actionSupport event="onchange" reRender="updatePanel, errorMessages" status="updateFieldsStatus"/>
+                                </apex:selectList>
+                                <apex:actionStatus id="updateFieldsStatus" startText="" startStyle="padding:1px 10px;background: no-repeat url('{!$Resource.FbD_CM__AjaxSpinner}')"/>
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Copy Attachments?"/>
+                            <apex:inputCheckbox value="{!includeAttachments}"/>    
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    
+                    <apex:outputPanel id="updatePanel">
+                        <apex:actionRegion >
+                            <apex:outputPanel rendered="{!updateOrDelete == 'update'}">
+                                <apex:pageBlockSection title="Merge From Case Field Update" collapsible="false" columns="1">
+                                    <apex:repeat id="ucf_rpt" value="{!caseUpdateFields}" var="ucf">
+                                        <apex:inputField value="{!tempMergeCase[ucf]}"/>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:outputPanel>
+                
+                    <apex:pageBlockSection id="pbs" title="Merge Case Mapping" collapsible="false" columns="1"
+                        rendered="{!OR(AND(NOT(toIdIncluded), mergeFromCase.FbD_CM__Merge_To_Case__c != null), AND(toIdIncluded, mergeToCase.Id != null))}">
+                        
+                        <apex:outputPanel >
+                            <p>Select the values that you want to retain in the merged record. All selected values will be saved on the "Merge To" Case.</p>
+                            
+                            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:15px">
+                                <thead>
+                                    <th colspan="3" style="background-color:#B7A752;opacity:0.9;filter:alpha(opacity=90);padding:2px 2px 5px 2px;">Merge From Case ({!mergeFromCase.CaseNumber})</th>
+                                    <th colspan="3" style="background-color:#B7A752;opacity:0.9;filter:alpha(opacity=90);padding:2px 2px 5px 2px;">Merge To Case ({!mergeToCase.CaseNumber})</th>
+                                </thead>
+                                
+                                <tbody>
+                                <apex:repeat id="rpt" value="{!fieldChoices}" var="fc">
+                                    <tr>
+                                        <td width="25px" style="border-bottom: solid 1px lightgray;padding:5px 3px 2px 3px;">
+                                            <apex:inputCheckbox id="mergeFromChecked" value="{!fc.mergeFromChecked}"
+                                                onclick="return validateChoice('{!$Component.pg.frm.pb.pbs.rpt.mergeFromChecked}','{!$Component.pg.frm.pb.pbs.rpt.mergeToChecked}');"/>
+                                        </td>
+                                        <td width="200px" style="border-bottom: solid 1px lightgray;padding:5px 3px 2px 3px;">
+                                            <apex:outputLabel value="{!$ObjectType.Case.Fields[fc.fieldName].Label}"/>
+                                        </td>
+                                        <td width="200px" style="border-bottom: solid 1px lightgray;padding:5px 3px 2px 3px;">
+                                            <apex:outputField value="{!mergeFromCase[fc.fieldName]}"/>
+                                        </td>
+                                        <td width="25px" style="border-bottom: solid 1px lightgray;padding:5px 3px 2px 3px;">
+                                            <apex:inputCheckbox id="mergeToChecked" value="{!fc.mergeToChecked}"
+                                                onclick="return validateChoice('{!$Component.pg.frm.pb.pbs.rpt.mergeToChecked}','{!$Component.pg.frm.pb.pbs.rpt.mergeFromChecked}');"/>
+                                        </td>
+                                        <td width="200px" style="border-bottom: solid 1px lightgray;padding:5px 3px 2px 3px;">
+                                            <apex:outputLabel value="{!$ObjectType.Case.Fields[fc.fieldName].Label}"/>
+                                        </td>
+                                        <td width="200px" style="border-bottom: solid 1px lightgray;padding:5px 3px 2px 3px">
+                                            <apex:outputField value="{!mergeToCase[fc.fieldName]}"/>
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                                </tbody>
+                            </table>
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td><apex:commandButton action="{!mergeCases}" value="Merge Cases" style="margin-top:10px;"/></td>
+                                        <td><apex:commandButton action="{!cancel}" value="Cancel" style="margin-top:10px;"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <script type="text/javascript">
+                                function validateChoice(fromId, toId) {
+                                    if (document.getElementById(fromId).checked == false){
+                                        alert('Either the Merge From Case or Merge To Case field must be checked.');
+                                        return false;
+                                    }
+                                    document.getElementById(toId).checked = false;
+                                    return true;
+                                }
+                            </script>
+                        </apex:outputPanel>
+                    </apex:pageBlockSection>
+                </apex:actionRegion>
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

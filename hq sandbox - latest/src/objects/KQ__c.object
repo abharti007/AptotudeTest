@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Kickass Quotient Tracking for Sales &amp; Solutions</description>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Case_Owner1__c</fullName>
+        <formula>Case_Owner__r.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Owner1</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Case_Owner__c</fullName>
+        <label>Case Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>KQ</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>KQ__c</fullName>
+        <formula>IF( Weekly_NiceReply__c =0,( Percentage_of_Goal_Met__c *((1-0.20)*100)),(((0.60* Percentage_of_Goal_Met__c)+(0.40*  Weekly_NiceReply__c  ))*((1-0.20)*100)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>KQ</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Goal_Met__c</fullName>
+        <formula>1-(( Weekly__c - Weekly_Goal__c )/ Weekly_Goal__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Percentage of Goal Met</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Weekly_Goal__c</fullName>
+        <label>Weekly Goal</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Weekly_NiceReply__c</fullName>
+        <label>Weekly NiceReply</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Weekly__c</fullName>
+        <label>Average Days Open</label>
+        <precision>18</precision>
+        <scale>3</scale>
+        <type>Number</type>
+    </fields>
+    <label>KQ</label>
+    <nameField>
+        <displayFormat>KQ-{000000}</displayFormat>
+        <label>KQ Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>KQ</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

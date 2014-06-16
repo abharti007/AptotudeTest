@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Billing_Contact_Phone__c</fullName>
+        <formula>Billing_Contact__r.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billing Contact Phone</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Contact__c</fullName>
+        <label>Billing Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Billing_State__c</fullName>
+        <formula>Billing_Contact__r.MailingState</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billing State</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Street__c</fullName>
+        <formula>Billing_Contact__r.MailingStreet</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billing Street</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Zip_Postal_Code__c</fullName>
+        <formula>Billing_Contact__r.MailingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billing Zip/Postal Code</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Calculated_Amount__c</fullName>
+        <formula>( Possible_Licenses__c * License_Cost_User_Month__c * 12) * (1- License_Discount__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Calculated Amount</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Competitor__c</fullName>
+        <label>Competitor</label>
+        <picklist>
+            <controllingField>Opportunity_Lost_Review__c</controllingField>
+            <picklistValues>
+                <fullName>ACT</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ascendix</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PowerBroker</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Property Base</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REA</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RealHound</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REApps</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REThink</fullName>
+                <controllingFieldValues>Lost to competitor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Contact_State__c</fullName>
+        <formula>Billing_Contact__r.MailingState</formula>
+        <label>Contact State</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Instruction__c</fullName>
+        <label>Contract Instructions</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Current_Solution__c</fullName>
+        <label>Current Solution</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ACT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACTCRE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ascendix</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ClientLook</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Goldmine</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Highrise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple CRM/Database</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outlook/Excel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Power Broker</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PropertyBase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proprietary DB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Realhound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REApplications</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REthink</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salesforce.com</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Data_Import_Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Data Import Complete</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Data_Migration_Required__c</fullName>
+        <defaultValue>true</defaultValue>
+        <inlineHelpText>Checking this box will include data migration instructions in the outgoing email to the Primary Contact once the opportunity stage equals Closed Won</inlineHelpText>
+        <label>Data Migration Required</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Days_Since_Last_Activity__c</fullName>
+        <formula>today() - LastActivityDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days Since Last Activity</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Effective_Date__c</fullName>
+        <label>Effective Date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Full_Onboarding__c</fullName>
+        <defaultValue>false</defaultValue>
+        <inlineHelpText>Checking this box will include full onboarding instructions in the outgoing email to the Primary Contact once the opportunity stage equals Closed Won</inlineHelpText>
+        <label>Full Onboarding</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Has_billing_been_created__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Has billing been created?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>High_Probability__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>High Probability</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Last_Activity__c</fullName>
+        <formula>Text(Days_Since_Last_Activity__c)&amp; &apos; Days &apos;&amp;
+IF(and( IsClosed =false, Days_Since_Last_Activity__c &lt;0), IMAGE(&quot;/servlet/servlet.FileDownload?file= 015300000035HBH&quot;, &quot;Future Task&quot;, 16,16), 
+IF( and(IsClosed =false,or(Days_Since_Last_Activity__c =0,isblank(Days_Since_Last_Activity__c))), IMAGE(&quot;/servlet/servlet.FileDownload?file=015300000035HCU&quot;, &quot;NO ACTIVITIES&quot;, 16,16), 
+IF(AND(IsClosed =false, Days_Since_Last_Activity__c &gt;=1, Days_Since_Last_Activity__c&lt;31,not(CloseDate &lt; Today()+ 7)),
+IMAGE(&quot;/servlet/servlet.FileDownload?file=015300000035HEK&quot;,&quot;Less than 31&quot;, 16,(Days_Since_Last_Activity__c)+5) , 
+if(AND (IsClosed =false, CloseDate &lt; TODAY()+7, CloseDate &gt;= TODAY()),
+IMAGE(&quot;/servlet/servlet.FileDownload?file= 015300000035Gyh&quot;,&quot;Exclamation&quot;), 
+if( and(IsClosed =false, today() &gt;  CloseDate ,not(Days_Since_Last_Activity__c &lt;=0)),IMAGE(&quot;/servlet/servlet.FileDownload?file= 015300000035HKr&quot;,&quot;Skull and Cross Bones&quot;,22.5,22.5),
+if(IsClosed = TRUE, IMAGE(&quot;/servlet/servlet.FileDownload?file= 015300000035HAB&quot;,&quot;Accepted&quot;),&quot;&quot;))))))</formula>
+        <label>Last Activity</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>License_Cost_User_Month__c</fullName>
+        <label>License Cost (/User/Month)</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>License_Discount__c</fullName>
+        <inlineHelpText>Must be approved by Eric or Tanner</inlineHelpText>
+        <label>License Discount</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>License_End_Date__c</fullName>
+        <formula>Effective_Date__c + 365</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License End Date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>License_Expiration_Date__c</fullName>
+        <formula>License__r.sfLma__Expiration__c</formula>
+        <label>License Expiration Date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>License_Status__c</fullName>
+        <formula>License__r.RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Status</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <label>License</label>
+        <referenceTo>sfLma__License__c</referenceTo>
+        <relationshipLabel>Opportunities</relationshipLabel>
+        <relationshipName>Opportunities</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Price_Calc__c</fullName>
+        <formula>(License_Cost_User_Month__c  *  Possible_Licenses__c) -  (License_Discount__c * License_Cost_User_Month__c  *  Possible_Licenses__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Monthly Price Calc</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>New_Org_Instructions__c</fullName>
+        <label>New Org Instructions</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_users__c</fullName>
+        <label>Number of Users</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Lost_Review__c</fullName>
+        <description>This field is used to help identify why the opportunity was lost so that we may better understand our deficiencies and work to solve them.</description>
+        <inlineHelpText>Enter the reason the opportunity was lost in this picklist field.</inlineHelpText>
+        <label>Closed Lost Review</label>
+        <picklist>
+            <controllingField>StageName</controllingField>
+            <picklistValues>
+                <fullName>Concerned with adoption</fullName>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lost to competitor</fullName>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pricing</fullName>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Staying with current provider</fullName>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Went silent</fullName>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <controllingFieldValues>Closed Lost</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Org_ID_15__c</fullName>
+        <formula>License__r.sfLma__Subscriber_Org_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Org ID (15)</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Org_ID__c</fullName>
+        <formula>CASESAFEID(License__r.sfLma__Subscriber_Org_ID__c)</formula>
+        <label>Org ID</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Outbound__c</fullName>
+        <formula>CONTAINS(Text( LeadSource ), &quot;OUTBOUND&quot;)</formula>
+        <label>Outbound?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Persona__c</fullName>
+        <label>Persona</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Agent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Team</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Firm</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Possible_Licenses__c</fullName>
+        <label># of Licenses</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Potential_Review__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Potential Review</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact_Email__c</fullName>
+        <formula>Billing_Contact__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Primary Contact Email</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Probability__c</fullName>
+        <formula>Possible_Licenses__c  *  Probability</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Probability</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Purchase_Order_Number__c</fullName>
+        <label>Purchase Order Number</label>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Specialty__c</fullName>
+        <label>Specialty</label>
+        <picklist>
+            <picklistValues>
+                <fullName>General Brokerage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Investment Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Landlord Representation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tenant Representation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Submitted_OEM_Provisioning__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Submitted OEM Provisioning</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <label>Revenue Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Recurring License</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <validationRules>
+        <fullName>Amount_Cannot_Be_0</fullName>
+        <active>true</active>
+        <errorConditionFormula>Amount &lt; 500 &amp;&amp;  text(StageName)  &lt;&gt; &quot;Closed Lost&quot;</errorConditionFormula>
+        <errorDisplayField>Amount</errorDisplayField>
+        <errorMessage>Nice Try. Input a real amount</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Closed_DateToday</fullName>
+        <active>true</active>
+        <errorConditionFormula>(CloseDate &lt; Today()) &amp;&amp; and( TEXT(StageName) &lt;&gt; &quot;Closed Won&quot;, TEXT(StageName) &lt;&gt; &quot;Closed Lost&quot; )</errorConditionFormula>
+        <errorDisplayField>CloseDate</errorDisplayField>
+        <errorMessage>Stop being a lazy-ass. The Closed Date must be later than today.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Closed_Won</fullName>
+        <active>true</active>
+        <errorConditionFormula>text(StageName) = &quot;Closed Won&quot; &amp;&amp; OR( New_Org_Instructions__c = &quot;&quot;,  TEXT(Current_Solution__c) = &quot;&quot;,  TEXT(Specialty__c) = &quot;&quot;)</errorConditionFormula>
+        <errorMessage>Don&apos;t be a jerk...the onboarding team needs your help. Fill out the Current Solution, Specialty, Onboarding Commitments, and New Org Instructions.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Contract_Notes_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(TEXT(StageName) = &quot;Paperwork Requested&quot;, Contract_Instruction__c = &quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>Contract_Instruction__c</errorDisplayField>
+        <errorMessage>Contract instructions are required when requesting paperwork provisioning</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Noew_Org_Instructions_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(TEXT(StageName) = &quot;In Trial&quot;,  New_Org_Instructions__c  = &quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>New_Org_Instructions__c</errorDisplayField>
+        <errorMessage>New Org instructions are required when requesting a new trial or organization to be provisioned. If standard provisioning, type &quot;None&quot;.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>APXTConga4__Conga_Mail_Merge</fullName>
+        <availability>online</availability>
+        <description>*** This is an example of a simple Conga Composer button. *** 
+
+Copy the URL from this button and paste it into your own custom button or link. Then add optional parameters to finely tune the button&apos;s behavior. See the Conga Configuration Guide for details.</description>
+        <displayType>button</displayType>
+        <height>450</height>
+        <linkType>url</linkType>
+        <masterLabel>Conga Composer</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>https://www.appextremes.com/apps/Conga/PointMerge.aspx
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!Opportunity.Id}</url>
+        <width>625</width>
+    </webLinks>
+    <webLinks>
+        <fullName>Contact_Role</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Contact Role</masterLabel>
+        <openType>replace</openType>
+        <page>ContactRoleVFP</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_New_Salesforce_Order</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Create New Salesforce Order</masterLabel>
+        <openType>newWindow</openType>
+        <page>ServiceOrderCreateNew</page>
+        <position>none</position>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_Order</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Create Salesforce Order</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>/apex/flowOpportunity?Id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_SignUp_Trial</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Create SignUp Trial</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>/apex/SignUpInternal?varOppId={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_Trial</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Create Trial</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>http://www.aptotude.com/sign-up-internal</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Edit</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Mass Edit</masterLabel>
+        <openType>sidebar</openType>
+        <page>MassEditOpp</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Update</fullName>
+        <availability>online</availability>
+        <description>Mass update</description>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Mass Update</masterLabel>
+        <openType>sidebar</openType>
+        <page>MassUpdateOpportunity</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+</CustomObject>

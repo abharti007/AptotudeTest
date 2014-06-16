@@ -1,0 +1,27 @@
+<apex:page tabStyle="Data_Shield__tab">
+<apex:sectionHeader title="Custom Object" subtitle="Scenario"/>
+<apex:form >
+<apex:pageBlock >
+
+<apex:pageBlockButtons >
+<apex:commandButton action="/apex/SDSDataShield" value="Back"/>
+</apex:pageBlockButtons>
+
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Thank you for your interest in Stratus Data Cleanser.  </h1>
+  <p>
+  For your convenience, we are built 100% on the Force.com platform, which means your data never leaves Salesforce.com.
+</p>
+
+<p>
+<b>The Custom Object Feature is available in the <b> PRO Edition</b> of Data 
+Cleanser.</b>  This will allow you to identify duplicates in your Custom 
+Objects using Matching Rules that you set. You will then be given a 
+listing of these duplicates that you can merge, therefore eliminating
+duplicates and enhancing the credibility of your data. </p>
+<p>
+For more information on this feature, please contact us at <a href="mailto:sales@stratuscloudsolutions.com">sales@stratuscloudsolutions.com</a> and request a demo. </p>
+<br />
+
+ </apex:pageBlock></apex:form>
+</apex:page>

@@ -1,0 +1,714 @@
+<apex:page title="Merge Group" action="{!PageLoad}" 
+ standardController="sds__Custom_Duplicate__c"  showHeader="true"  extensions="sds.CustomDuplicateDispExtensions" 
+>
+
+
+<apex:form id="frmMergeRecs">
+<apex:sectionHeader title="Merge" subtitle="{!StrObjType} Records"/>   
+<apex:pageMessages ></apex:pageMessages>
+<apex:pageBlock title="Duplicate Records" >
+
+<apex:pageBlockButtons >
+<input type="button" class="btn"  value="Merge" id="mergeButton" onClick="this.value='Merging please wait...'; MergeRecords();"  />
+<INPUT TYPE="BUTTON" class="btn" VALUE="Cancel" ONCLICK="history.go(-1)" />
+</apex:PageBlockButtons>
+
+ <apex:actionFunction name="margeALCObjects" status="myStatus" action="{!ALCmarge}" rerender="jsvalues">
+            <apex:param name="jmaterid" value="" />
+            <apex:param name="jlistids" value="" />
+            <apex:param name="jmergegroup" value="" />
+            <apex:param name="jtypegroup" value="account" />
+           <apex:param name="jSObject" value="" />
+           <apex:param name="jSMultiselect" value="" />
+</apex:actionFunction>
+    
+
+  <style>
+ .pretty-table
+{
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+  border: 1px solid #333;
+  
+  font-size: 0.9em;
+  width:100%;
+
+
+}
+
+.pretty-table caption
+{
+  caption-side: bottom;
+  font-size: 0.9em;
+  text-align: right;
+  padding: 0.5em 0;
+}
+
+.pretty-table th, .pretty-table td
+{
+  border: 1px dotted #666;
+  padding: 0.5em;
+  text-align: left;
+}
+
+.pretty-table th[scope=col]
+{
+  color: #fff;
+  background-color: #8fadcc;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  border-bottom: 2px solid #333;
+  border-right: 2px solid #333;
+}
+
+.pretty-table th+th[scope=col]
+{
+  background-color: #204EA9;
+  border-right: 1px dotted #666;
+}
+
+.pretty-table th[scope=row]
+{
+  background-color: #204EA9;
+  border-right: 2px solid #333;
+  color: #fff;
+}
+
+.pretty-table tr.alt th
+{
+ color: #fff;
+}
+
+.pretty-table tr.alt 
+{
+background-color: #DFDFDF;
+}
+
+.pretty-table tr:hover th[scope=row], 
+.pretty-table tr:hover td
+{
+  background-color: #E3F3FF;
+  color: #000;
+}
+
+    </style>
+
+     <apex:actionStatus startText="Please wait..." id="myStatus">
+        <apex:facet name="stop">
+          
+        </apex:facet>
+    </apex:actionStatus>
+     
+     <script type="text/javascript" src="{!$Resource.switchcontent}" >
+
+
+</script>
+
+     <h3 id="bobcontent1-title" class="handcursor">Expand this Section to Combine Text Area and Test Area Long Fields</h3>
+        <div id="bobcontent1" class="switchgroup1">
+If you would like to combine specific Text Area and Text Area Long Fields please check the fields you would like to be combined during the Merge process.  An example of a combined field would be as follows:  'Text 1' and 'Text 2' would become 'Text 1 || Text 2'
+            <div  id="textArearSpam"></div>
+            
+            <div id="MultiPicklistSpam"></div>
+
+        </div>
+        
+
+        <script type="text/javascript">
+
+        var bobexample=new switchcontent("switchgroup1", "div") //Limit scanning of switch contents to just "div" elements
+        bobexample.setStatus('<img src="{!$Resource.activate}" /> ', '<img src="{!$Resource.add}" /> ')
+        //bobexample.setColor('darkred', 'black')
+        bobexample.setPersist(true)
+        bobexample.collapsePrevious(true) //Only one content open at any given time
+        bobexample.init()
+        </script>
+
+<style type="text/css">
+.handcursor
+{
+ display:block; 
+cursor:hand;
+cursor:pointer;
+background-color: #204EA9;
+  border-right: 1px solid #333;
+  color: #fff;
+
+
+}
+.switchgroup1
+{
+    padding-left: 20px;
+    
+    padding-bottom:20px;
+
+}
+.switchgroup1 li
+{
+    list-style-type:none;
+
+
+}
+     </style>
+    <div style="padding-top:10px;" id="outputDiv">
+    
+     </div>  
+    <apex:inputHidden id="hIsUserValid" value="{!FullOrLimited}"/>
+    
+    
+    <apex:inputHidden id="hStrObjType" value="{!StrObjType}" />
+    
+           
+
+</apex:pageBlock>
+
+<script>
+    //sforce.debug.trace=true;
+    var PageLoad='no';
+    var vSGrpID = '{!DuplicateRecordGroupId}';//'{!$CurrentPage.parameters.id}';
+    var theMasterObject = new Object();
+   
+    var vDuplicateType = '{!JSENCODE(StrObjType)}';
+  
+    
+    function runme()
+    {
+       try
+        {
+         
+            layoutResults1();
+        }
+            catch(err)
+            {
+              alert(err.description);
+            }
+    }
+        
+    
+var FieldsAsObject=new Array();
+var ObjectRecord=new Array();
+var AccountNameFromID = new Object();
+
+var MstrRecord = new Object();
+function OnLoadProcess() 
+{
+  var FieldLab= '{!JSENCODE(ShowFieldsLab)}';
+  //Fields Labs to Objects 
+     try
+    {
+          var FieldsLab=new Array();
+          FieldsLab=FieldLab.split('||');
+          for(var i = 1; i < FieldsLab.length ;i++ )
+          {
+          
+          var FieldsSubLab=new Array();
+          FieldsSubLab=FieldsLab[i].split('|');
+          FieldObject=new Object();
+          for(var j = 0; j< FieldsSubLab.length ;j++ )
+          {
+              var FieldsSubLabValue=new Array();
+              FieldsSubLabValue=FieldsSubLab[j].split('=');
+              FieldObject[FieldsSubLabValue[0]]=FieldsSubLabValue[1];
+          
+          }
+          FieldsAsObject.push(FieldObject);
+         
+          }
+
+         //Object records Lab to Objects 
+         var ObjectLab= '{!JSENCODE(ShowObjectLab)}';
+
+          var RecordLab=new Array();
+          RecordLab=ObjectLab.split('|@@@|');
+          for(var i = 1; i < RecordLab.length ;i++ )
+          {
+              var RecordSubLab=new Array();
+              RecordSubLab=RecordLab[i].split('@@@@');
+              RecordObject=new Object();
+              for(var j = 0; j< RecordSubLab.length ;j++ )
+              {
+                  var RecordSubLabValue=new Array();
+                  RecordSubLabValue=RecordSubLab[j].split('=');
+                  RecordObject[RecordSubLabValue[0]]=RecordSubLabValue[1];
+              }
+              ObjectRecord.push(RecordObject);
+          }
+            
+
+        }
+            catch(err)
+            {
+              alert('OnLoadProcess:'+err.description);
+            }   
+  
+}
+
+
+
+function layoutResults1() 
+    {    
+    
+    
+            
+           
+           // alert('queryResult:'+queryResult);
+                OnLoadProcess(); 
+                
+                
+                var AreaTxt=document.getElementById('textArearSpam');
+                var MultiPicklistDiv=document.getElementById('MultiPicklistSpam');
+ 
+              MultiPicklistDiv.innerHTML='';
+                output = '';    
+            
+                if (ObjectRecord.length > 0) 
+                {
+               
+                    
+                  
+                    var ObjectMultiSelect= '{!JSENCODE(ShowObjectMultiSelect)}';
+
+                 var IdNamesss= '{!JSENCODE(IdNames)}';
+               
+                //Accountid to name Start
+                
+                if(IdNamesss!='')
+                {
+                   var RecordLab=new Array();
+                   
+                   RecordLab=IdNamesss.split('|');
+                    for(var m=0; m<RecordLab.length; m++) 
+                    {
+                        if(RecordLab[m]!='')
+                        {
+                            var picklistValue=new Array();
+                            picklistValue=RecordLab[m].split('=');
+                            
+                            if(picklistValue[0]!='')
+                            {
+                                AccountNameFromID[picklistValue[0]]=picklistValue[1];
+                            
+                            }
+                        }
+                    }
+                            
+                }
+                
+                 
+                //Accountid to name End
+                    if(ObjectMultiSelect!='')
+                        {
+                                    
+                            MultiPicklistDiv.innerHTML='<h3 class="pageType">Picklist (Multi-Select) fields </h3><br /><p />';
+                                        
+                            var RecordLab=new Array();
+                            
+                            RecordLab=ObjectMultiSelect.split('||');
+                                 
+                                for(var m=0; m<RecordLab.length; m++) 
+                                {
+                                
+                                    if(RecordLab[m]!='')
+                                    {
+                                        
+                                        var picklistValues=new Array();
+                                        picklistValues=RecordLab[m].split('|')
+                                        MultiPicklistDiv.innerHTML+='<li><b>'+picklistValues[0]+'</b></li>';
+                                        
+                                        for(var b=1; b<picklistValues.length; b++) 
+                                            {
+                                            var picklistValue=new Array();
+                                            var MultiValue=picklistValues[b];
+                                            picklistValue=MultiValue.split('#');
+                                            MultiPicklistDiv.innerHTML+='<li><input type="checkbox" onClick="appendpicklistsvalue(this);"  title='+MultiValue+' value="'+MultiValue+'" id='+picklistValue[1]+' />'+picklistValue[1]+'</li>';
+                                            
+                                            }
+                                            MultiPicklistDiv.innerHTML+='<li>-</li>';               
+                                    }
+                            
+                                }
+                                
+                                
+                        }  
+                            
+                            
+               
+                    //actResult = sforce.connection.query(vActQuery);
+                    actRecords = ObjectRecord;
+                    //loop through the records and construct html string
+                    if(actRecords.length>0) 
+                    {                
+                        output +='<table class="pretty-table">';
+                        output +='<caption>'+vDuplicateType+' Duplicate Records</caption>';
+                        
+                        
+                        
+                       // AreaTxt.innerHTML='<ul>';
+                        var IsEx=1;
+                        for(var i = 0; i < FieldsAsObject.length; i++) 
+                        {                        
+                            var fieldList = FieldsAsObject[i];
+                            
+                            var fieldName = fieldList.Name;
+                            var fieldlabel = fieldList.label;
+                            var updateable=fieldList.updateable;
+                            var IsHaveValues=0;
+                            
+                           
+                           
+                            
+                            if(fieldList.type=='TEXTAREA')
+                            {
+                            if(fieldList.name!='sds__Duplicate_Key__c')
+                              AreaTxt.innerHTML+='<li><input type="checkbox" onClick="AppendTextArea(this)" value="'+fieldName+'" id='+fieldName+' />'+fieldlabel+'</li>'; 
+                            
+                            }
+                            output += '<tr><th scope="row">' + fieldlabel + '</th>';
+                            
+                            for(var j = 0; j < actRecords.length; j++)
+                            {                            
+                                var actRecord = actRecords[j];
+                                
+                                if(i==0 && j==0)
+                                {
+                                    MstrRecord=actRecord;
+                                    
+                                    /*  
+                                   if(vDuplicateType =='account')            
+                                        MstrAccount.Id = actRecord.Id;
+                                    else if(vDuplicateType =='contact')            
+                                        MstrContact.Id = actRecord.Id;
+                                    else if(vDuplicateType =='lead')            
+                                        MstrLead.Id = actRecord.Id;
+                                    else {
+                                        alert("Object definition not found.");
+                                        return;
+                                    }
+                                    */
+                                }
+                                var tmp="null";  
+                                
+                                
+                                
+                                output += '<td ';                    
+                                
+                                 if(i > 0) 
+                                {
+                                    if(j==0 && actRecord[fieldName] != 'null')
+                                    {
+                                        IsHaveValues=1;
+                                        if(updateable=='false'|| fieldName in {'CreatedDate':'','CreatedById':'','LastModifiedDate':'','LastModifiedById':'','SystemModstamp':'','IsDeleted':''})
+                                        {
+                                            output += ' ' + actRecord.Id + '\',\'' + fieldName + '\')" ';
+                                        }
+                                        else
+                                        {
+                                            output += ' style="background-color:skyblue;" onClick="toggleCells(this, \'skyblue\', \'white\',\'' + actRecord.Id + '\',\'' + fieldName + '\')"';
+                                        }
+                                    }
+                                    else 
+                                    {
+                                        output += '  ';
+                                        if(actRecord[fieldName] != 'null')
+                                        {
+                                            
+                                           if(updateable=='false'|| fieldName in {'CreatedDate':'','CreatedById':'','LastModifiedDate':'','LastModifiedById':'','SystemModstamp':'','IsDeleted':''}) 
+                                           {
+                                                output += ' ' + actRecord.Id + '\',\'' + fieldName + '\')" ';
+                                           }
+                                            else
+                                            {   
+                                                if(IsHaveValues==0)
+                                                {
+                                                    output += ' style="background-color:skyblue;" onClick="toggleCells(this, \'skyblue\', \'white\',\'' + actRecord.Id + '\',\'' + fieldName + '\')"';
+                                                    IsHaveValues=1;
+                                                    SetMaterValues(fieldName,actRecord[fieldName]);
+                                                }
+                                                else        
+                                                output += ' onClick="toggleCells(this, \'skyblue\', \'white\',\'' + actRecord.Id + '\',\'' + fieldName + '\')" ';
+                                            }                                            
+                                        }                                    
+                                    }                                                                                                                               
+                                }
+                            
+                                if(actRecord[fieldName] == 'null')
+                                    output += ' > </td>';                       
+                                else
+                                {
+                                    if(fieldName=='Id')
+                                    {
+                                    
+                                     
+                                     if(MstrRecord.Id==actRecord[fieldName])
+                                            output += ' ><a target="_blank" href="/'+actRecord[fieldName]+'">' + actRecord[fieldName]  + '</a></td>';      
+                                         else
+                                         {
+                                         output += ' ><a target="_blank" href="/'+actRecord[fieldName]+'">' + actRecord[fieldName]  + '</a>&nbsp;&nbsp;&nbsp;<input Id="'+actRecord[fieldName]+'"  checked=true type="checkbox" value="'+actRecord[fieldName]+'" onClick="AddArrayobjectIds(this)"  /></td>';      
+                                         ArrayobjectIds.push(actRecord[fieldName]);
+                                         }
+                                     }
+                                    else if(fieldName=='OwnerId'||fieldName=='ParentId'||fieldName=='ReportsToId'
+                                    ||fieldName=='AccountId')
+                                    {
+                                        output += ' ><a target="_blank" href="/'+actRecord[fieldName]+'">' + AccountNameFromID[actRecord[fieldName]]  + '</a></td>';      
+                                    }
+                                    
+                                    
+                                    else{
+                                     output += ' >' + actRecord[fieldName]  + '</td>';      
+                                    }
+                                 }
+                                
+                                                                
+                                    }
+                             
+                            output += '</tr>';                        
+                        }       
+                       // AreaTxt.innerHTML='</ul>';                                 
+                        output +='</table>';
+                 }
+                }        
+                else 
+                {
+                    output = '<b>The requested duplicate group record not found. If records were merged then duplicate group reference is deleted.</b>';         
+                }
+               
+               var state = { //state that you need when the callback is called
+                output : document.getElementById("outputDiv"),
+                startTime : new Date().getTime()};
+                
+                //render the generated html string 
+                state.output.innerHTML = output;
+                  
+            }          
+              
+            var multipicklists=new Array();
+            function appendpicklistsvalue(picklistvalue)
+            {
+            
+            
+            if(picklistvalue.checked==true)
+                    multipicklists.push(picklistvalue.value);
+                else
+                multipicklists.splice(multipicklists.indexOf(picklistvalue.value), 1);
+            
+            
+            
+                    
+            }
+            
+    var TextAreaFields=new Array();
+    function AppendTextArea(textvalue)
+    {
+        if(textvalue.checked==true)
+        {
+                TextAreaFields.push(textvalue.value);
+                
+        }
+        else
+            TextAreaFields.splice(TextAreaFields.indexOf(textvalue.value), 1);
+        
+     }
+    
+    var ArrayobjectIds=new Array();
+    function AddArrayobjectIds(IdsObjectCheck)
+    {
+    
+        
+        if(IdsObjectCheck.checked==true)
+        {
+                ArrayobjectIds.push(IdsObjectCheck.value);
+                
+        }
+        else
+            ArrayobjectIds.splice(ArrayobjectIds.indexOf(IdsObjectCheck.value), 1);
+        
+        
+        
+        
+     }
+     
+    
+    
+    function CloseWindow()
+    {
+            
+    }
+    function SetMaterValues(fname,svalue)
+    {
+        
+         MstrRecord[fname] =  svalue;
+                    
+    }
+    
+    function toggleCells(el, col1, col2,id,fname)
+    {
+        for (i = 1; i < el.parentNode.childNodes.length; i++)
+        if (el.parentNode.childNodes[i].tagName)
+        el.parentNode.childNodes[i].style.backgroundColor=col2;
+       
+        el.style.backgroundColor=col1;
+        for(var i = 0; i < actRecords.length; i++)
+        {                
+            var chkRcrd = actRecords[i];
+            if(chkRcrd.Id == id)
+            {       
+                
+                    MstrRecord[fname] =  chkRcrd[fname];
+                
+                              
+            }
+        }
+        
+    }
+
+    /*function test(strTitle,mstrObj,slaveList) */    
+    function MergeRecords()
+    {
+    
+       //source.output.innerHTML = '';//
+        var ObjectIdForURL = '';  
+
+        try
+        {             
+             
+            if(ObjectRecord.length > 0)
+            {
+                var blFoundError = false;                                
+                if(vDuplicateType == 'account')
+                {                    
+                       if(MstrRecord.Id==MstrRecord.ParentId)
+                       {
+                            document.getElementById("mergeButton").value='Merge';
+                            alert("This account is parented by an account that is also its child ,Please select another Parent Account or modify account record.");
+                            return false;
+                       }
+                   //
+                    
+                }
+                else if(vDuplicateType == 'contact')
+                {            
+                        if(MstrRecord.Id==MstrRecord.ReportsToId)
+                        {
+                            document.getElementById("mergeButton").value='Merge';
+                            alert("This contact  is parented by an contact that is also its child .Please select another Reports To or modify contact record.");
+                            return false;
+                        }
+                                      
+                }
+                   
+                
+                //test area 
+
+                    var AppDescription=''; 
+                    
+                    var TxtareaValueArray=new Array(); 
+                    for(var j = 0; j < TextAreaFields.length ;j++ )
+                            {
+                                TxtareaValueArray[j]='';
+                            }
+                    
+                    
+                    if(TextAreaFields.length>0)
+                        if(actRecords.length > 1)                    
+                        {
+                        
+                            for(var i = 0; i < actRecords.length ;i++ )
+                            {
+                                for(var j = 0; j < TextAreaFields.length ;j++ )
+                                {
+                                
+                                var TextAreaField=TextAreaFields[j];
+                                
+                                
+                                       
+                                if(actRecords[i][TextAreaField]!='null')
+                                TxtareaValueArray[j]+=actRecords[i][TextAreaField]+' =======';
+                                
+                                }
+                            }
+                            //account['Description']=AppDescription;
+                            
+                        }
+                        
+                        for(var j = 0; j < TextAreaFields.length ;j++ )
+                        {
+                            var TextAreaField=TextAreaFields[j];
+                            if(TextAreaField!=null)
+                            if(TextAreaField!='')
+                            {
+                                MstrRecord[TextAreaField]=TxtareaValueArray[j];
+                               
+                            }
+                        }                  
+                
+                    //test area
+                    
+                    var tmpArr = new Array();                        
+                    /*
+                    for(var i = 1; i < actRecords.length ;i++ )
+                    {
+                        tmpArr.push(actRecords[i].Id);
+                    } */
+                    
+                    //merge Id
+                    for(var j = 0; j < ArrayobjectIds.length ;j++ )
+                    {
+                    if(MstrRecord.Id.toString()!=ArrayobjectIds[j])
+                            tmpArr.push(ArrayobjectIds[j]);
+                    }
+                    
+                    
+                    /*
+                //testing only 
+                    for(var i = 0; i < FieldsAsObject.length; i++) 
+                    {                        
+                        var fieldList = FieldsAsObject[i];
+                        var fieldName = fieldList.Name;
+                        alert(fieldName+'='+MstrRecord[fieldName]);
+                    }   */              
+                 if(tmpArr.length==0)
+                    alert("Please select records for merge.");
+                else
+                margeALCObjects(MstrRecord.Id,tmpArr.toString(),vSGrpID,vDuplicateType,objToString(MstrRecord),multipicklists.toString());      
+                              
+            }
+            else
+            {
+                alert("Object defination not found.");
+            }
+        }
+        catch(error) 
+        {
+            alert(error);               
+        }                     
+        
+    }    
+    
+   function objToString (obj) {
+    var str = '';
+    for (var p in obj) {
+        if (obj.hasOwnProperty(p)) 
+        {
+            if(obj[p]!=null)
+            {
+             if(obj[p]!='null')
+             if(obj[p]!='')
+                str += p + '@=@' + obj[p] + '#-#';
+            }
+        }
+    }
+    return str;
+}
+
+    
+</script>
+
+<script>
+    runme();
+</script>  
+
+
+</apex:form>
+</apex:page>

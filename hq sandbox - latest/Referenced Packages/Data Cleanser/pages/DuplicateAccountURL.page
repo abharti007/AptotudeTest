@@ -1,0 +1,3 @@
+<apex:page action="{!PageLoad}" standardController="sds__DSAccountDuplicate__c" extensions="sds.DuplicateAccountURLExtensions">
+ Please wait...
+</apex:page>

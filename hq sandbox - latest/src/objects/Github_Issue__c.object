@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Closed_At__c</fullName>
+        <label>Closed At</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <description>Github issues comments.</description>
+        <label>Comments</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Created_At__c</fullName>
+        <label>Created At</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <label>Description</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>GitHub_Milestone__c</fullName>
+        <description>GitHub_Milestone</description>
+        <label>GitHub Milestone</label>
+        <referenceTo>GitHub_Milestones__c</referenceTo>
+        <relationshipLabel>Github Issues</relationshipLabel>
+        <relationshipName>Github_Issues</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Github_URL__c</fullName>
+        <label>Github URL</label>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Issue_Number__c</fullName>
+        <externalId>true</externalId>
+        <label>Issue Number</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Repo_Id__c</fullName>
+        <label>Repo Id</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Repo_Name__c</fullName>
+        <externalId>true</externalId>
+        <label>Repo Name</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <label>State</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reopened</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Updated_At__c</fullName>
+        <label>Updated At</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>User_Story__c</fullName>
+        <label>User Story</label>
+        <referenceTo>User_Story__c</referenceTo>
+        <relationshipLabel>Github Issues</relationshipLabel>
+        <relationshipName>Github_Issues</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <label>Github Issue</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Description__c</columns>
+        <columns>Issue_Number__c</columns>
+        <columns>State__c</columns>
+        <columns>Github_URL__c</columns>
+        <columns>Repo_Name__c</columns>
+        <columns>Created_At__c</columns>
+        <columns>Closed_At__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Issue Title</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Github Issues</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Issue_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>State__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Github_URL__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Issue_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Github_URL__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Issue_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Github_URL__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Issue_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Created_At__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

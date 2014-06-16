@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>GitHub Milestone</description>
+    <enableHistory>true</enableHistory>
+    <fields>
+        <fullName>Due_On__c</fullName>
+        <label>Due On</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Milestone_Id__c</fullName>
+        <description>The Id of this milestone in the GitHub repo</description>
+        <label>Milestone_Id</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <label>Release</label>
+        <referenceTo>Release__c</referenceTo>
+        <relationshipLabel>GitHub Milestones</relationshipLabel>
+        <relationshipName>GitHub_Milestones</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <label>State</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reopened</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>URL__c</fullName>
+        <description>The URL of the Milestone in GitHub</description>
+        <label>URL</label>
+        <type>Url</type>
+    </fields>
+    <label>GitHub Milestone</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>GitHub Milestones</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

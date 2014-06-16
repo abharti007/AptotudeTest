@@ -1,0 +1,33 @@
+<apex:component >
+
+  <div class="bookings_component">
+    <div class="title_wrapper">
+      <h1 class="title">top sales reps this month</h1>
+      <span class="subtitle">by bookings</span>
+    </div>
+    <div class="body">
+      <div class="no_bookings_container">
+        <span class="no_bookings">
+          <span class="no_bookings_msg">
+            Oh no! Zero bookings this month.
+          </span>
+          <div class="no_bookings_config_container">
+            <div class="no_bookings_last_month">
+              <div class="explanation top">Want to show last month's bookings until your next deal?</div>
+              <a href="#" class="ignore_btn">No Thanks</a>
+              <a href="#" class="warning_btn show_last_mo">Show Last Month</a>
+            </div>
+            <div class="no_bookings_config">
+              <span class="explanation config">You also may need to configure your fields.</span>
+            </div>
+          </div>
+        </span>
+      </div>
+      <ul class="chart"></ul>
+      <div class="details"></div>
+    </div>
+  </div>
+
+  <apex:includeScript value="{!$Resource.SalesLeader__ISFullscreenBookingsJS}" />
+  <apex:stylesheet value="{!$Resource.SalesLeader__ISFullscreenBookingsCSS}" />
+</apex:component>

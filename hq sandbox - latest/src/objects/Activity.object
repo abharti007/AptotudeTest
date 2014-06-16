@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Call_Result__c</fullName>
+        <label>Call Result (Apto)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Busy Signal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disconnected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Left VM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Answer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reached</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Received Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unavailable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wrong Number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Date_Closed__c</fullName>
+        <label>Date Closed</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Days_to_Close_Task__c</fullName>
+        <formula>Date_Closed__c -  DATEVALUE(CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days to Close Task</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>HubSpot_Inc__Guid__c</fullName>
+        <description>Unique ID for HubSpot related Tasks</description>
+        <label>Guid</label>
+        <length>200</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Short_Comments__c</fullName>
+        <description>A field to store a short summary of the conversation had to quick viewing.</description>
+        <inlineHelpText>A field to store a short summary of the conversation had to quick viewing.</inlineHelpText>
+        <label>Short Comments</label>
+        <type>TextArea</type>
+    </fields>
+</CustomObject>

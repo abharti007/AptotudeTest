@@ -1,0 +1,57 @@
+<apex:page controller="sds.clsDataShieldEditScenario" title="Edit Data Cleanser Scenario" 
+tabStyle="Data_Shield__tab">
+
+<apex:sectionHeader subtitle="Edit Scenario" title="Stratus"/>
+
+<apex:form id="frmMyDSRules">
+
+
+    <apex:pageBlock rendered="{!not(isnull(MasterRule))}" mode="edit" title="Scenario">
+
+
+<apex:PageBlockButtons >
+<apex:commandButton action="{!DataShieldEditScenario}"   rendered="{!(!IsAllowEdit)}" value="Save Changes" />
+                <apex:commandButton action="{!showCreateMatchRule}" value="Next Page" />
+                <apex:commandButton action="{!CancelClick}" value="Cancel" />
+                
+                
+</apex:PageBlockButtons>
+
+        <apex:pageblocksection columns="1">
+             <apex:pageBlockSectionItem >
+                <apex:pageMessages ></apex:pageMessages>
+             </apex:pageBlockSectionItem>
+        </apex:pageblocksection>
+
+        <apex:pageblocksection id="EdScenario">                
+             <apex:pageBlockSectionItem >
+                 <apex:outputLabel for="ruleName">Scenario Name: </apex:outputLabel>
+                 <apex:inputText id="ruleName" value="{!RuleName}"/>
+             </apex:pageBlockSectionItem>
+         </apex:pageBlockSection>            
+         <apex:pageBlockSection >
+         
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel for="objectType"> Choose Object  </apex:outputLabel>
+                   {!selectedObject}
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+           
+
+           
+               
+
+    </apex:pageBlock>                               
+    <apex:inputHidden value="{!MasterRule}" id="hMasterRule"/>      
+    
+    <script type="text/javascript">
+    
+        function setMasterRule(ruleID)
+        {                    
+            document.getElementById("{!$Component.hMasterRule}").value = ruleID;
+            return true;
+        }    
+
+    </script>      
+</apex:form>    
+</apex:page>

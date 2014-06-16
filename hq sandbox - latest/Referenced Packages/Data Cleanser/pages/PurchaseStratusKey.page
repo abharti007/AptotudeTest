@@ -1,0 +1,48 @@
+<apex:page tabStyle="Data_Shield__tab" sidebar="false" extensions="sds.clsAddDataShieldNewKey" 
+standardController="sds__AccountCredential__c">
+<apex:form >
+<script>
+  function confirmCancel() {
+      var isCancel = confirm("Are you sure ?");
+      if (isCancel) return true;
+  
+     return false;
+  }  
+</script>
+  
+<apex:sectionHeader title="Purchase/Trial License Key" />    
+    <apex:pageBlock mode="Read">
+        <table width="100%">
+            <tr><td style="width:350px" valign="top"> 
+                <div style="padding-top:20px;margin-top:20px;">
+                <img src='{!$Resource.sLogo}' />
+                </div>    
+                </td>    
+                <td  valign="top">   
+                <table   align="center" width="100%">
+                    <tr>
+                        <td>
+                        <h1>
+                        Thank you,
+                        </h1>
+                        </td>
+                    </tr>
+                    <tr>        
+                        <td>
+                        <p>                 
+                        <a href='{!LicenseUrl}' target='_blank'>Purchase Full Featured Version</a>
+                        </p>
+                        <br/><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height:100px;">                
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

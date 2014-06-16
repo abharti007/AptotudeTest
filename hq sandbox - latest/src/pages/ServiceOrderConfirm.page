@@ -1,0 +1,24 @@
+<apex:page controller="ServiceOrderConfirm" action="{!init}" >
+    <apex:sectionHeader title="Channel Order App - Order Confirmation" />
+    <apex:form >
+    <center>
+        
+        <apex:PanelGrid columns="1" width="600px" style="font-size: 15px">
+            <apex:outputText style="display: block;margin-bottom: 4%;" value="This order will add the following products to {!opportunity.Account.Name} (Org ID: {!serviceOrder.CHANNEL_ORDERS__Customer_Org_ID__c}):" />
+            
+            <apex:repeat value="{!productNameList}" var="pName">
+                <apex:outputLabel value="{!pName}" /> <br/>
+            </apex:repeat>
+            
+            <apex:outputText style="margin-top: 6%;display:block;" value="By submitting below, you are confirming that a corresponding order was received for this customer. You agree to be bound by the terms and conditions of and be a party to this agreement. You warrant that you are at least eighteen years old and that you have the legal capacity to enter into contracts. If you are entering into this Agreement on behalf of a company, organization, or other entity, then (a) you includes you and that entity, and (b) you represent and warrant that you are an authorized representative of the entity with the authority to bind the entity to this Agreement, and that you agree to this Agreement on the entity’s behalf." />
+        
+            <apex:panelGrid columns="2">
+                <apex:commandButton style="width: 175%;height: 175%;background:#ea655b; color: white;" value="Modify" action="{!modify}" />
+                
+                <apex:commandButton style="margin-left: 183%;width: 175%;height: 175%;background: #89bf3d; color: white;" value="Confirm and Submit" />
+            </apex:panelGrid>
+        </apex:PanelGrid>
+        
+    </center>
+    </apex:form>
+</apex:page>

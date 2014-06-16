@@ -1,0 +1,82 @@
+<apex:page action="{!PageLoad}" controller="sds.crossobjectscenariocontroller" tabStyle="Data_Shield__tab" >
+   
+ 
+  
+   
+  <apex:sectionHeader title="Stratus" subtitle="Cross Object Scenario"/>
+    
+   <apex:form id="frmMyDSRules">
+    
+   <apex:actionPoller action="{!StartLeadbatchPoller}" rerender="frmMyDSRules" interval="20"/>
+    <apex:pageBlock >
+    <apex:PageMessages ></apex:PageMessages>
+
+       <apex:pageBlockButtons >
+       <apex:commandButton value="New" action="{!CreateScenario}"/>
+       <apex:commandButton action="{!CancelClick}" value="Back to Main Screen" />
+       </apex:pageBlockButtons>
+        
+        <apex:pageBlockSection columns="1">            
+            <apex:pageBlockSectionItem >
+           Before you can activate any scenario, you must first de-activate any active scenario by selecting the 'De-Activate' Button next to the Active scenario. Once the scenario is de-activated, then you can select the 'Activate' Button  and this will delete all current duplicate groups for the object, will create new duplicate groups and will make rules Active for any new records added to the database.  Once the groups have been created, you can create a Tab to view these duplicates. See section 6c. Adding a Cross Object Duplicate Tab found in the Help Data Cleanser Tab.       
+            </apex:pageBlockSectionItem>  
+            
+                   <apex:pageBlockSectionItem >
+                   
+                   <apex:pageBlockTable value="{!MasterRuleListByType}" var="o" rendered="{!NOT(ISNULL(MasterRuleListByType))}">
+                    <apex:inputHidden value="{!o.id}"/>
+                    <apex:inputHidden value="{!o.sds__ObjectType__c}"/>    
+                    <apex:inputhidden value="{!o.sds__EnabledStatus__c}"/>                    
+                    <apex:column headerValue="Status">                    
+                        <apex:outputText rendered="{!(o.sds__EnabledStatus__c == 'true')}"> <font color="green"><b>Active</b></font> </apex:outputText>
+                        <apex:outputText rendered="{!NOT(o.sds__EnabledStatus__c == 'true')}"> <font color="red"><b>InActive</b></font> </apex:outputText>                    
+                    </apex:column>
+                    <apex:column value="{!o.sds__RuleName__c}" headerValue="Scenario Name" />                                        
+                    <apex:column headerValue="Clean Data">                
+                        <apex:commandButton value="De-Activate" disabled="{!not(o.sds__Scenario_Activated__c)}" action="{!deleteSavedRefData}" title="Clean Data" onclick="javascript:return askForCleanup('{!o.Id}');"/>
+                    </apex:column>
+                    <apex:column headerValue="Activate">                
+                        <apex:commandButton action="{!ActivateScenario}" value="Activate" onclick="javascript: return MasterRuleDetails('{!o.Id}');" style="font-weight:bold" disabled="{!o.sds__Scenario_Activated__c}"  rendered="{!(not(o.sds__Activating_Scenario__c) && not(o.sds__Scenario_Activated__c))}"/>
+                        <apex:outputText rendered="{!((o.sds__Activating_Scenario__c) && not(o.sds__Scenario_Activated__c))}"><font color="Blue"><b>Processing...</b></font></apex:outputText>
+                        <apex:outputText rendered="{!(not(o.sds__Activating_Scenario__c) && o.sds__Scenario_Activated__c)}"><font color="green"><b>Activated</b></font> </apex:outputText>
+                    </apex:column>                
+                     <apex:column headerValue="Edit">                
+                        <apex:commandButton action="{!EditScenario}" onClick="javascript:return MasterRuleDetails('{!o.id}');"  value="Edit" style="font-weight:bold">
+                        
+                        </apex:commandButton>
+                    </apex:column>  
+                                     
+                    <apex:column headerValue="Delete">                
+                        <apex:commandButton action="{!DeleteScenario}"  value="Delete" onclick="javascript: return confirmDelete('{!o.Id}');" style="font-weight:bold"/>
+                    </apex:column>                    
+                </apex:pageBlockTable> 
+</apex:pageBlockSectionItem>  
+                                    
+        </apex:pageBlockSection>   
+
+        
+    </apex:pageBlock>
+    
+    
+      <apex:inputHidden value="{!SelectedId}" id="hSelectedId"/>
+      
+      <script type="text/javascript">
+            function MasterRuleDetails(userMasterId)
+            {                    
+                document.getElementById("{!$Component.hSelectedId}").value = userMasterId;                
+                return true;
+            }            
+            function confirmDelete(delid)
+            {                    
+                var answer = confirm("Are you sure you want to delete this scenario?");            
+                if(answer==true){
+                    document.getElementById("{!$Component.hSelectedId}").value = delid;                
+                    return true;
+                }else{       
+                    return false;            
+                }
+            }         
+            
+        </script>  
+ </apex:form>    
+</apex:page>

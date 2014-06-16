@@ -1,0 +1,21 @@
+<apex:page standardController="Opportunity" extensions="OppFlowExtension">
+  <flow:interview name="Order_wizard" interview="{!myflow}" finishLocation="{!URLFOR($Page.CHANNEL_ORDERS__ServiceOrderCreate,null, [id=OrderId])}" rerender="loadJS">
+        <apex:param name="varOptyId" value="{!Opportunity.id}"/>
+      <apex:param name="varAccontID" value="{!Opportunity.AccountId}"/>
+      <apex:param name="varOrderID" value="{!strOrderNames}"/>
+  <apex:param name="varPartnerProductName" value="{!objProductCatalog[0].Id}"/>
+   <apex:param name="varPartnerProductQuntity" value="{!objProductCatalog[0].CHANNEL_ORDERS__Custom_Unit__c }"/>
+  <!--  <apex:param name="varPartnerProductName" value="{!productNames[1].Name}"/> -->
+    <!-- <apex:param name="varProductQuantity" value="{!objProducts[0].Quantity}"/> -->
+        </flow:interview> 
+     <apex:outputtext value="{!productNames[1].Name}"/>   
+      <apex:outputPanel id="loadJS">
+        <script language='javascript'>
+            // If all data is available, redirect the user to the Orders page
+            if ({!NOT(ISNULL(OrderId))}) {
+                parent.location.href = '{!URLFOR($Page.CHANNEL_ORDERS__ServiceOrderCreate,null, [id=OrderId, clone=1])}';
+            }
+        </script>
+  </apex:outputPanel>
+
+</apex:page>

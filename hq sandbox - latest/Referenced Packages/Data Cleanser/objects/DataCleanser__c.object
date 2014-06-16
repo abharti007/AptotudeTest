@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Data Cleanser Preferences settings</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Allow_Batch__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Enable Record Types</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Data_Cleanser_Enable__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Real time monitoring</inlineHelpText>
+        <label>Data Cleanser Enable</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DuplicateFoundAction__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Duplicate Found Action</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Duplicate_Found__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>not in use</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If duplicate is found</inlineHelpText>
+        <label>Duplicate Found</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Schedule_Duplicate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Schedule Duplicate Runs</inlineHelpText>
+        <label>Schedule Duplicate</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Schedule_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Use to deactivate the trigger during manual merge .</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Use to deactivate the trigger during manual merge .</inlineHelpText>
+        <label>Schedule Id</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Web_to_Lead__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Web to Lead source</description>
+        <externalId>false</externalId>
+        <label>Web to Lead</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <label>DC Preferences</label>
+</CustomObject>

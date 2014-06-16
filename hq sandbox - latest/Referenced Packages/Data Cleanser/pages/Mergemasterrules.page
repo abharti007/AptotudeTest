@@ -1,0 +1,27 @@
+<apex:page standardController="sds__Duplicate_Group__c" action="{!PageLoad}" recordSetVar="Duplicate_Group__c" extensions="sds.MergemasterrulesController" >
+<apex:sectionHeader title="Merge Records"/>
+   <apex:form id="frmMyDSRules">
+   
+   
+  <apex:actionPoller action="{!StartLeadbatchPoller}" rerender="frmMyDSRules" interval="15"/>
+ 
+        <apex:pageBlock title="Records" mode="Edit">
+         <apex:pageMessages />
+         <apex:pageBlockButtons >
+       
+         <apex:commandButton action="{!CancelRecordMerge}" value="Cancel" />
+         
+         
+         
+         </apex:pageBlockButtons>
+         
+       
+        
+
+                    <img src='{!$Resource.loading}' />Mergeing please wait...
+
+
+           
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

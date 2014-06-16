@@ -1,0 +1,133 @@
+<apex:page controller="sds.crossobjectFilterWizardcontroller" tabStyle="Data_Shield__tab">
+  <apex:sectionHeader subtitle="Edit Scenario" title="Stratus"/>
+
+<apex:form id="Describe">
+
+    <apex:pageBlock id="block1" title="Filter Rules">
+    
+    <apex:PageBlockButtons >
+       <apex:commandButton value="Previous Page" action="{!showEditMatchRule}" rerender="in" status="inStatus"/>                        
+                <!--
+                <apex:commandButton value="Clean Data" action="{!deleteSavedRefData}" title="Clean Data" onclick="javascript:return askForCleanup();"/> 
+                <apex:commandButton value="Save and Activate" action="{!activateMatchRules}" title="Save and Activate" onclick="javascript:return askForActivation();" disabled="{!not(ActivateScenario)}"/>
+                <apex:commandButton value="Create Groups" action="{!createMatchGroupList}" title="Create Groups" onclick="javascript:return askForGrouping();" disabled="{!not(CreateGroups)}"/> 
+                -->
+                <apex:commandButton value="Submit" action="{!goToMainPage}" title="Submit"/>
+                <apex:commandButton action="{!CancelClick}" value="Cancel" />
+                
+    </apex:PageBlockButtons>
+    
+    <apex:pageMessages id="errorMessage"></apex:pageMessages> 
+    
+    <apex:pageBlockSection columns="1" rendered="{!not(isnull(selectedObject))}">
+      <apex:pageBlockSectionItem >           
+      If you wish to run your rules only on certain records within your SF.com database you can 
+      create Filtering Rules to accomplish this. An example would be I only want new records to be compared
+      with records that are in the Country = USA.
+      </apex:pageBlockSectionItem>           
+    </apex:pageBlockSection>
+
+    <apex:inputHidden value="{!MasterRuleId}" id="masterId"/>
+    <apex:inputHidden value="{!selectedObject}" id="objType"/>
+    
+        <apex:pageblocksection columns="4" title="Add a Filtering Rule" rendered="{!not(isnull(selectedObject))}">
+         <apex:pageBlockSectionItem >
+            <apex:selectList size="1" id="FieldName" value="{!FilterFieldSelVal}">
+                <apex:selectOptions value="{!fieldNames}"/>                
+                    <apex:actionSupport event="onchange" status="DataTypeWait" rerender="cbxlevel2">
+                        
+                    </apex:actionSupport>
+                    
+                        
+            </apex:selectList>   
+        </apex:pageBlockSectionItem>                             
+        <apex:pageBlockSectionItem >         
+            <apex:panelgroup >
+            <apex:outputPanel styleClass="requiredInput" layout="block">
+            <apex:outputPanel styleClass="requiredBlock" layout="block"/>   
+
+<apex:actionStatus id="DataTypeWait" startText="Please wait..." >
+                                    <apex:facet name="stop">
+                <apex:selectList value="{!FilterOperator}" id="cbxlevel2" size="1" >
+                    <apex:selectOptions value="{!OperatorType}"/>
+                </apex:selectList>
+                 </apex:facet>
+                </apex:actionStatus>
+            </apex:outputPanel>
+            </apex:panelgroup>            
+         </apex:pageBlockSectionItem>
+         <apex:pageBlockSectionItem >
+                <apex:inputText value="{!FilterValue}" id="filterValue1"/>
+         </apex:pageBlockSectionItem>
+         <apex:pageBlockSectionItem >         
+                <apex:commandButton value="Add Match Filter" rendered="{!(!IsAllowEdit)}" action="{!getFilterRules}" />
+         </apex:pageBlockSectionItem>
+        </apex:pageblocksection>  
+        
+        
+
+
+                 
+        <apex:pageBlockSection columns="1" title="Filter Rule List"  id="filterList2" rendered="{!not(isnull(selectedObject))}">
+          <apex:outputPanel id="in">
+           <apex:actionStatus startText="Updating...." id="outStatus">
+             <apex:facet name="stop">
+                <apex:dataTable value="{!filters}" var="a" styleClass="list">
+                  <apex:inputHidden value="{!a.id}" required="false"/>
+                  <apex:inputHidden value="{!a.sds__ObjectName__c}" required="false"/>
+                  <apex:column ><apex:outputField value="{!a.sds__FieldName__c}" /></apex:column>
+                  <apex:column ><apex:outputField value="{!a.sds__OperatorType__c}" /></apex:column>
+                  <apex:column ><apex:outputField value="{!a.sds__FilterValue__c}" /></apex:column>
+                  <apex:column >                
+                   <a href="javascript:if (window.confirm('Are you sure?')) DeleteFilter('{!a.Id}');" style="font-weight:bold">Del</a>
+                  </apex:column>                 
+                </apex:dataTable> 
+             </apex:facet>
+           </apex:actionStatus> 
+          </apex:outputPanel>    
+        </apex:pageBlockSection>                    
+
+             
+        
+</apex:pageBlock>
+
+
+<apex:actionFunction action="{!DeleteFilter}" name="DeleteFilter" rerender="in,outStatus" status="outStatus" >
+   <apex:param name="delid" value="" assignTo="{!SelectedDelId}"/>
+</apex:actionFunction>    
+    
+    <script>
+        function askForActivation()
+        {
+            if (window.confirm('Would you like Data Shield to search your SF.com database to find duplicates using this scenario?')) 
+            {
+                alert("This process will take a few minutes. Once complete you will find all your matching duplicates in the 'Matching Duplicate Tab'");
+                return true;
+            }
+            return false;
+        }    
+        function askForGrouping()
+        {
+            if (window.confirm('Would you like Data Shield to store duplicate reference data.?')) 
+            {
+                alert("This process will take a few minutes. Once complete you will find all your matching duplicates in the 'Matching Duplicate Tab'");
+                return true;
+            }
+            return false;
+        } 
+        function askForCleanup()
+        {
+            if (window.confirm('Would you like Data Shield to delete duplicate reference data.?')) 
+            {
+                alert("This process will take a few minutes. Once complete you will find activate button enabled again for the active scenario in 'Edit Scenario'");
+                return true;
+            }
+            return false;
+        } 
+        
+        
+           
+    </script>
+
+</apex:form>
+</apex:page>

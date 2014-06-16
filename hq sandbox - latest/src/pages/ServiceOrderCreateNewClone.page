@@ -1,0 +1,129 @@
+<apex:page standardController="Opportunity" tabStyle="Opportunity" sidebar="false" extensions="OppFlowExtensionNewClone">
+ 
+ <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"  />
+ 
+  <style>
+        .headerRow .TableTitle {
+            color: #CC0000 !important;
+            text-align: center !important;
+        }
+    </style>
+ <apex:sectionheader title="Channel Order App - Edit order"/> 
+ <apex:form >
+ 
+ <apex:pageblock title="1. Enter Customer Information">
+          <apex:outputtext value="To begin your order, enter the customer information below.  
+          Customer data is stored once an order is submitted for the first time. 
+          To auto-populate the fields search on the Company Name or Org ID new "/> 
+          <br/> 
+          
+          <apex:param name="varOptyId" value="{!Opportunity.id}"/>
+          <apex:param name="varAccontID" value="{!Opportunity.AccountId}"/>
+          <apex:param name="varLicenseID" value="{!Opportunity.Org_ID_15__c}"/>
+          <apex:param name="varOrderID" value="{!strOrderNames}"/>
+      <apex:pageBlockSection title="Customer Information Section" columns="2">
+                 
+                <apex:inputfield label="Company Name" value="{!objOpp.AccountId}"/>
+                <apex:inputfield label="Org ID" value="{!objLicense.sfLma__Subscriber_Org_ID__c}"/>  
+                <apex:inputfield label="Street" value="{!objAcc.BillingStreet }"/>
+                <apex:inputfield label="City" value="{!objAcc.BillingCity }"/>
+                <apex:inputfield label="Country" value="{!objAcc.BillingCountry }"/>
+                <apex:inputfield label="State/Province/Region" value="{!objAcc.BillingState }"/>
+                <apex:inputfield label="ZIP/Postal Code" value="{!objAcc.BillingPostalCode }"/>
+        </apex:pageBlockSection>
+ 
+ </apex:pageblock> 
+ 
+ <apex:pageblock title="2. Select a Contract">
+      <apex:pageBlockSection title="Contract Information" columns="1">
+          <apex:selectList id="con" label="Contract" value="{!objPartnerContract.Id}" size="1" title="Contract">
+            <apex:selectOptions value="{!Contracts}"></apex:selectOptions>
+          </apex:selectList>
+      
+      </apex:pageBlockSection>
+ </apex:pageblock>
+ 
+  
+ <apex:pageblock title="3. Enter Order Details">
+  <apex:pageBlockSection title="Order Information" columns="2">
+   <apex:selectList id="oType" label="Order Type" value="{!objServiceOrder.Id}" size="1" title="Service Order">
+            <apex:selectOptions value="{!ServiceOrders}"></apex:selectOptions>
+    </apex:selectList>
+   <apex:outputtext label="SFDC Invoice Description" value="{!strOrderNames}"/>
+   <apex:inputfield label="Related Opportunity" value="{!objOpp.Name}"/>
+  </apex:pageBlockSection>
+  </apex:pageblock>
+  
+  <apex:pageblock title="4. Product Details">
+  <apex:pageBlockSection title="Product Information" columns="1">
+  <apex:variable value="{!0}" var="count" />
+   <apex:pageblocktable value="{!productNames}" var="v">
+       <apex:column headervalue="Product Name">
+            <apex:outputtext value="{!v.Name}" />
+       </apex:column>
+       <apex:column headervalue="App">
+            
+       </apex:column>
+        <apex:column headervalue="Pricing">
+            <apex:outputtext value="{!objProducts[0].UnitPrice}" />
+       </apex:column>
+        <apex:column headervalue="Unit">
+           
+       </apex:column>
+       <apex:column headervalue="Total Quantity">
+            <apex:inputtext value="{!objProducts[0].Quantity}" styleClass="quantity{!count}" onkeyup="calculateTotalPrice('quantity{!count}', 'custPrice{!count}', 'totalPrice{!count}')" />
+       </apex:column>
+        <apex:column headervalue="Customer Price (Unit/Month)">
+             <apex:outputtext value="{!objProducts[0].UnitPrice}" styleClass="custPrice{!count}"/>
+       </apex:column>
+       
+        <apex:column headerClass="TableTitle" headervalue="Total Customer Price/Month">
+           <apex:outputtext value="{!objProducts[0].TotalPrice}" styleClass="totalPrice{!count}" />
+       </apex:column>
+        <apex:column headervalue="Estimated Total SFDC Price/Month">
+           <apex:outputtext value="--" />
+       </apex:column>
+    <!--    <apex:column headervalue="Contract Length">
+           
+       </apex:column>
+       <apex:column headervalue="Billing Frequency">
+           
+       </apex:column>
+       <apex:column headervalue="Contract Auto Renew">
+           
+       </apex:column>
+        <apex:column headervalue="Renewal Terms (Months)">
+           
+       </apex:column>
+        <apex:column headervalue="Cancellation Terms (Days)">
+           
+       </apex:column>  -->
+       
+       <apex:column >
+        <apex:variable value="{!count+1}" var="count" />
+       </apex:column>
+       
+   </apex:pageblocktable>
+  </apex:pageBlockSection>
+  </apex:pageblock>
+  
+ </apex:form>
+ 
+ <script>
+ 
+    function calculateTotalPrice(quantity, customerPrice, totalPrice) {
+        console.log('==called==');
+        var calculatedTotalPrice = $('.'+quantity).val() * $('.'+customerPrice).text();
+        
+        console.log('==quantity=='+$('.'+quantity).val());
+        console.log('==customerPrice=='+$('.'+customerPrice).text());
+        console.log('==calculatedTotalPrice=='+calculatedTotalPrice);
+        
+        $('.' + totalPrice).text(calculatedTotalPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+    }
+ 
+ </script>
+ 
+ 
+ 
+</apex:page>

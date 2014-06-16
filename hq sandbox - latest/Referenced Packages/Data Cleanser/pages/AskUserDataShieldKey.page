@@ -1,0 +1,66 @@
+<apex:page controller="sds.UserLicenseControl"   tabStyle="Data_Shield__tab" >
+<apex:form >
+<apex:pageMessages />
+
+<apex:pageBlock title="Stratus Data Cleanser Activation">
+<apex:PageBlockSection >
+<apex:pageBlockSectionItem >
+
+Name:
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:inputText size="60" value="{!UserName}"/>
+
+</apex:pageBlockSectionItem>
+</apex:PageBlockSection>
+
+<apex:PageBlockSection >
+
+
+<apex:pageBlockSectionItem >
+License Key:
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:inputText size="60" value="{!UserKey}"/>
+</apex:pageBlockSectionItem>
+</apex:PageBlockSection>
+<apex:PageBlockSection >
+<apex:pageBlockSectionItem >
+
+</apex:pageBlockSectionItem>
+<apex:pageBlockSectionItem >
+<apex:commandButton action="{!ValidUserKey}" value="Submit"/>
+
+
+</apex:pageBlockSectionItem>
+</apex:PageBlockSection>
+</apex:pageBlock>
+
+<apex:pageBlock title="Looking for a License Key">
+<table>
+<tr>
+<td>
+  <img src='{!$Resource.sLogo}' />
+
+</td>
+<td valign="middle">
+<p>Welcome to Stratus Data Shield. The following screens will guide you through obtaining your free License for Data Shield - Lite or purchasing Data Shield - Pro.  Once you have entered all of the information on the following screens and agreed to our terms and conditions, you will receive an email with your license key. At that time you will return to this screen to enter your name and your license key. Once your key is submitted you will be free to enjoy Stratus Data Shield. Click on the tab 'Register License' to begin the process.</p>
+<br />
+<!--
+<a href="{!htmlENCODE(LicenseUrl)}" target="_blank">Get License/Trial</a>
+-->
+
+<apex:commandButton Action="{!GetProKey}" value="Get License/Trial" />
+
+
+</td>
+
+</tr>
+</table>
+</apex:pageBlock>
+
+
+
+
+</apex:form>
+</apex:page>

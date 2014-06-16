@@ -1,0 +1,48 @@
+<apex:page sidebar="false" showHeader="false" standardController="Contact" 
+extensions="sds.ContactDuplicateListController" >
+  <b>{!ErrorMsg}</b>
+<apex:pageBlock rendered="{!NOT(ISNULL(ListContact))}">
+<apex:pageBlockButtons rendered="{!ButtonDisplay}" >
+
+
+<input type="button" class="btn"  value="Merge" onclick="MergeClick();" />
+
+
+<input type="hidden" name="HidMerge" id="HidMerge" value="{!StratusDuplicate}" />
+
+</apex:PageBlockButtons>
+
+
+
+
+<apex:pageBlockTable value="{!ListContact}" var="a"  >
+
+<apex:column >
+<apex:facet name="header">Contact Name</apex:facet>
+<a href="javascript: void(0)" onclick="stopwatch('/{!a.Id}')">{!a.Name}</a>
+</apex:column>
+
+<apex:column value="{!a.Phone}"></apex:column>
+<apex:column value="{!a.Email}"></apex:column>
+<apex:column value="{!a.Account.Name}"></apex:column>
+
+</apex:pageBlockTable>
+
+</apex:pageBlock>
+ <script type="text/javascript">
+ function MergeClick()
+ {
+ var MergeId=document.getElementById('HidMerge');
+ stopwatch('/'+MergeId.value);
+ }
+
+function stopwatch(NewURL) 
+{
+//alert(NewURL);
+  window.top.location.href=NewURL;
+ 
+ }
+
+ 
+ </script>
+</apex:page>

@@ -1,0 +1,106 @@
+<apex:page controller="sds.Preferencescontroller" action="{!PageLoad}" tabStyle="Data_Shield__tab">
+   <apex:sectionHeader title="Stratus" subtitle="Preferences"/>
+    
+   <apex:form id="frmMyDSRules">
+   
+    <apex:actionFunction name="rerenderpreferences" action="{!getpreferencesdcStatus}" status="outStatus"  rerender="BLpreferencesdc" >
+          <apex:param name="ObjectName" assignTo="{!selectedObject}" value="" />
+      </apex:actionFunction>
+
+     
+  <apex:Pageblock >
+   <apex:PageMessages ></apex:PageMessages>
+  <apex:pageBlockButtons location="Top" >
+     <apex:commandButton onclick="return confirm('Are you sure, you want to reset ?');" value="Reset Standard Scenarios" action="{!ResetClick}"/>
+     <apex:commandButton onclick="return confirm('Are you sure, you want to reset ?');" value="Reset Custom Scenarios" action="{!ResetCustomClick}"/>
+
+      <apex:commandButton value="Manage Field Order" action="{!FieldOrderClick}"/>
+
+          
+  </apex:PageBlockButtons>
+  </apex:Pageblock>
+   <apex:pageBlock mode="Edit" helpTitle="Data Cleanser Help" helpUrl="https://stratuscloudsolutions.secure.force.com/HelpDataCleanser" >
+
+
+       <apex:pageBlockButtons >
+       
+       <apex:commandButton value="Save" action="{!SaveClick}"/>
+            <apex:commandButton action="{!CancelClick}" value="Return to Main Screen" />
+                            
+                               
+       </apex:pageBlockButtons>
+        
+       
+                   
+                   <apex:pageBlockSection id="BLpreferencesdcObject" title="Select the object you wish to set the setting for (A/C/L) " columns="1"> 
+                   
+          <apex:pageBlockSectionItem >
+                <apex:outputLabel for="objectType"> Select object</apex:outputLabel>
+                    
+                    <apex:selectList onChange="rerenderpreferences(this.value)" value="{!selectedObject}" size="1" id="objectType">
+                     <apex:selectOptions value="{!objectNames}"/> 
+                                   
+                    </apex:selectList>
+    
+                    
+            </apex:pageBlockSectionItem>
+            
+            
+            
+            </apex:pageBlockSection> 
+            <apex:outputPanel id="BLpreferencesdc">
+           <apex:actionStatus startText="Updating...." id="outStatus">
+             <apex:facet name="stop">   
+             
+            <apex:pageBlockSection id="BLpreferencesdcList" title="Preferences" columns="1"> 
+            
+                   <apex:pageBlockSectionItem >
+               Real time monitoring 
+               
+            <apex:selectList value="{!selectedRealMonitoring}" size="1" id="RealMonitoring">
+                     <apex:selectOptions value="{!Monitoring}"/>                
+                    </apex:selectList>
+                    
+                    
+                </apex:pageBlockSectionItem> 
+                
+                
+                
+                   <apex:pageBlockSectionItem >
+             If duplicate is found 
+             <apex:selectList value="{!selectedDuplicate}" size="1" id="Duplicate">
+                     <apex:selectOptions value="{!Duplicate}"/>                
+                    </apex:selectList>
+                </apex:pageBlockSectionItem> 
+             
+               
+             
+             
+                
+                
+                <apex:pageBlockSectionItem >
+             Record Source
+             <apex:inputField value="{!ObjDC.sds__Web_to_Lead__c}"/>
+                </apex:pageBlockSectionItem> 
+                               
+                               
+                               
+                
+                </apex:pageBlockSection>        
+                                    
+        </apex:facet>
+           </apex:actionStatus> 
+          </apex:outputPanel>  
+
+        
+    </apex:pageBlock>
+    
+    
+    
+    
+     
+    
+     
+    
+ </apex:form> 
+</apex:page>

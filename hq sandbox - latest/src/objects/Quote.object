@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Annual_License_Cost__c</fullName>
+        <formula>IF( Quoted_Licenses__c  &lt; 4, Quoted_Licenses__c  * 12 * 69, 
+IF( Quoted_Licenses__c  &lt; 11, Quoted_Licenses__c  * 12 * 59, 
+IF( Quoted_Licenses__c  &gt; 11, Quoted_Licenses__c  * 12 * 49, 0 )))</formula>
+        <label>Annual License Cost</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Customization_and_Training__c</fullName>
+        <description>Cost for additional customization and training</description>
+        <inlineHelpText>This field denotes the cost quoted for additional customization, development and training.</inlineHelpText>
+        <label>Customization and Training</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Expiration_Date__c</fullName>
+        <description>Date on which Expiration ex</description>
+        <formula>CreatedDate  + 7</formula>
+        <inlineHelpText>This is the date on which the quote expires. It is auto calculated as 7 days from when the quote was created.</inlineHelpText>
+        <label>Expiration Date</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Quoted_Licenses__c</fullName>
+        <description>Number of licenses quoted</description>
+        <inlineHelpText>Enter the number of licenses necessary for the quote.</inlineHelpText>
+        <label>Quoted Licenses</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Total_Cost__c</fullName>
+        <description>Annual license cost + any additional charges for customization, development and training.</description>
+        <formula>Customization_and_Training__c +  Annual_License_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Formula field calculating annual license cost + any additional charges for customization, development and training.</inlineHelpText>
+        <label>Total Price</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+</CustomObject>

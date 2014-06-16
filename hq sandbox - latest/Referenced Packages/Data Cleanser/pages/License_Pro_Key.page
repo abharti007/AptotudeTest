@@ -1,0 +1,10 @@
+<apex:page sidebar="false" tabStyle="Register_License__tab">
+  
+
+<apex:iframe height="1200"  scrolling="true"
+
+src="https://stratuscloudsolutions.secure.force.com/license?UserId={!$User.Id}&OrgId={!$Organization.Id}&EmailId={!$User.Email}&lastname={!$User.LastName}&firstname={!$User.FirstName}&phone={!$User.Phone}&company={!$Organization.Name}&BillingStreet={!$Organization.Street}&BillingCity={!$Organization.City}&BillingState={!$Organization.State}&BillingPostalCode={!$Organization.PostalCode}&BillingCountry={!$Organization.Country}" />
+
+
+
+</apex:page>

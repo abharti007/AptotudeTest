@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chargent Gateway %28Base%29</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <description>The Chargent Gateway Package (Chargent Base) consists of:
+
+- Chargent Application and Logo
+- Gateway Object (Custom)
+- Gateway Data Class
+- Payment Class for AuthorizeNet (with Level 2)
+- Payment Class for Barclays ePDQ (proxy)
+- Payment Class for Chase Orbital
+- Payment class for Litle
+- Payment class for Moneris CA and US
+- Payment Class for PayflowPro
+- AuthorizeNet emulators for NMI and MeS
+- Custom Profile Settings
+- Installation Web Tab
+- FAQ Web Tab
+- Remote Site Settings</description>
+    <namespacePrefix>ChargentBase</namespacePrefix>
+    <setupWeblink>Chargent_Installation</setupWeblink>
+    <types>
+        <members>ChargentWebService</members>
+        <members>Payment_AltCharge</members>
+        <members>Payment_AuthorizeNet</members>
+        <members>Payment_CyberSource</members>
+        <members>Payment_Litle</members>
+        <members>Payment_Moneris</members>
+        <members>Payment_Netbanx</members>
+        <members>Payment_Orbital</members>
+        <members>Payment_PayflowPro</members>
+        <members>Payment_Realex</members>
+        <members>Payment_Stripe</members>
+        <members>Payment_ePDQ</members>
+        <members>TChargentMapper</members>
+        <members>TGateway</members>
+        <members>TPayment</members>
+        <members>XMLDom</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Chargent</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Gateway__c.AVS_Forced_Failure__c</members>
+        <members>Gateway__c.Accounting_Seed_Integration__c</members>
+        <members>Gateway__c.Active__c</members>
+        <members>Gateway__c.Currency__c</members>
+        <members>Gateway__c.Debug__c</members>
+        <members>Gateway__c.Merchant_ID__c</members>
+        <members>Gateway__c.Merchant_Reference__c</members>
+        <members>Gateway__c.Require_AVS__c</members>
+        <members>Gateway__c.Require_CCV__c</members>
+        <members>Gateway__c.Security_Key__c</members>
+        <members>Gateway__c.Test_Mode__c</members>
+        <members>Gateway__c.Transaction_Security_Key__c</members>
+        <members>Gateway__c.Use_Tokenization__c</members>
+        <members>Gateway__c.Username__c</members>
+        <members>Gateway__c.Verification_Forced_Failures__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Gateway__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Chargent_Installation</members>
+        <name>CustomPageWebLink</name>
+    </types>
+    <types>
+        <members>FAQ</members>
+        <members>Gateway__c</members>
+        <members>Install_or_Upgrade</members>
+        <members>Installation</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Chargent_Docs</members>
+        <name>Document</name>
+    </types>
+    <types>
+        <members>Gateway__c-Amazon FPS Layout</members>
+        <members>Gateway__c-Authorize%2Enet Layout</members>
+        <members>Gateway__c-Barclays ePDQ</members>
+        <members>Gateway__c-Cybersource Layout</members>
+        <members>Gateway__c-Gateway Layout</members>
+        <members>Gateway__c-Litle Layout</members>
+        <members>Gateway__c-Moneris</members>
+        <members>Gateway__c-NMI Layout</members>
+        <members>Gateway__c-Netbanx</members>
+        <members>Gateway__c-Orbital Layout</members>
+        <members>Gateway__c-Payflow Pro Layout</members>
+        <members>Gateway__c-Realex</members>
+        <members>Gateway__c-Stripe</members>
+        <members>Gateway__c-altCharge %28ACH%29 Layout</members>
+        <members>Gateway__c-eProcessingNet Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Gateway__c.All</members>
+        <name>ListView</name>
+    </types>
+    <types>
+        <members>Gateway__c.Amazon_FPS</members>
+        <members>Gateway__c.Authorizenet</members>
+        <members>Gateway__c.Barclays_ePDQ</members>
+        <members>Gateway__c.Barclays_ePDQ_Extra</members>
+        <members>Gateway__c.Cybersource</members>
+        <members>Gateway__c.Litle</members>
+        <members>Gateway__c.Moneris_CA</members>
+        <members>Gateway__c.Moneris_US</members>
+        <members>Gateway__c.Netbanx</members>
+        <members>Gateway__c.Network_Merchants_NMI</members>
+        <members>Gateway__c.Orbital</members>
+        <members>Gateway__c.PayflowProPayPal</members>
+        <members>Gateway__c.Platinum_Payments</members>
+        <members>Gateway__c.Realex_Payment</members>
+        <members>Gateway__c.Stripe</members>
+        <members>Gateway__c.Trident_Gateway_MeS</members>
+        <members>Gateway__c.altCharge_ACH</members>
+        <members>Gateway__c.eProcessingNetwork</members>
+        <name>RecordType</name>
+    </types>
+    <types>
+        <members>AmazonAPI</members>
+        <members>AmazonTestAPI</members>
+        <members>AuthNetAPI</members>
+        <members>AuthNetTestAPI</members>
+        <members>Barclays_ePDQ</members>
+        <members>LitleTest</members>
+        <members>Litle_Sandbox</members>
+        <members>Litle_Transact</members>
+        <members>LittleLive</members>
+        <members>MES_Live</members>
+        <members>MES_Test</members>
+        <members>Moneris_CA</members>
+        <members>Moneris_CA_Test</members>
+        <members>Moneris_US</members>
+        <members>Moneris_US_Test</members>
+        <members>Netbanx_Live</members>
+        <members>Netbanx_Test</members>
+        <members>Network_Merchants_NMI</members>
+        <members>OrbitalAPI</members>
+        <members>OrbitalTestAPI</members>
+        <members>PayflowProAPI</members>
+        <members>PayflowProTestAPI</members>
+        <members>Platinum_Payments</members>
+        <members>RealexPayment</members>
+        <members>Stripe</members>
+        <members>Trident_MeS_Live</members>
+        <members>Trident_MeS_Test</members>
+        <members>altChargeAPI</members>
+        <members>ePDQ_Production</members>
+        <members>ePDQ_Proxy</members>
+        <members>ePDQ_Test</members>
+        <members>ePDQ_Test_MDE</members>
+        <members>eProcessingNetwork</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <version>28.0</version>
+</Package>

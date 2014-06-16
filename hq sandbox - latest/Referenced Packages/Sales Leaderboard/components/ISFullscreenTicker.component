@@ -1,0 +1,16 @@
+<apex:component >
+
+  <apex:includeScript value="{!URLFOR($Resource.SalesLeader__ISFullscreenLib, '/lib/js/jquery.webticker.js')}" />
+  <apex:stylesheet value="{!$Resource.SalesLeader__ISFullscreenTickerCSS}" />
+  <apex:includeScript value="{!$Resource.SalesLeader__ISFullscreenTickerJS}" />
+
+
+  <div class="ticker_component">
+    <div class="ticker">
+      <div class="view">
+        <ul class="items"></ul>
+      </div>
+      <div class="parallelogram right"></div>
+    </div>
+  </div>
+</apex:component>

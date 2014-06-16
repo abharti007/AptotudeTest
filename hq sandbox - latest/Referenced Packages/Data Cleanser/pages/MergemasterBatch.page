@@ -1,0 +1,3 @@
+<apex:page standardController="sds__Duplicate_Group__c" action="{!PageLoad}" recordSetVar="Duplicate_Group__c" extensions="sds.MergemasterBatchController" >
+
+</apex:page>

@@ -1,0 +1,24 @@
+<apex:page tabStyle="Data_Shield__tab" controller="sds.MergemasterrulesConfcontroller">
+
+   
+    <apex:pageBlock >
+  
+                    <apex:pageMessage summary="Unfortunately, the records you have selected can not be merged.
+                      Please check the 'Merge Results' to see why.  The most common reason is your Organization may have some
+                       Validation rules set on this Object." severity="error" strength="3" />
+                       
+                       <apex:pageMessages ></apex:pageMessages>
+                       
+                       </apex:pageBlock>
+                      
+                       <br />
+                       <p>
+       <input type="button" ONCLICK="history.go(-3)" class="btn" value="Back to Duplicate Groups" />
+       </p>
+       
+       <br /> 
+<iframe src="apex/LogaCase?&core.apexpages.devmode.url=1" height="400" frameborder="0" width="100%"></iframe>
+
+   `
+        
+</apex:page>

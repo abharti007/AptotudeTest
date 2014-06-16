@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Register License</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom25: Alarm clock</motif>
+    <url>https://stratuscloudsolutions.secure.force.com/license?UserId={!User.Id}&amp;OrgId={!Organization.Id}&amp;EmailId={!User.Email}&amp;lastname={!User.LastName}&amp;firstname={!User.FirstName}&amp;phone={!User.Phone}&amp;company={!Organization.Name}&amp;BillingStreet={!Organization.Street}&amp;BillingCity={!Organization.City}&amp;BillingState={!Organization.State}&amp;BillingPostalCode={!Organization.PostalCode}&amp;BillingCountry={!Organization.Country}</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

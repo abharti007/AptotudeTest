@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object is to maintain the comments related to Github issues.</description>
+    <enableHistory>true</enableHistory>
+    <fields>
+        <fullName>Comment_Body__c</fullName>
+        <description>Comment_Body</description>
+        <label>Comment Body</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Comment_Id__c</fullName>
+        <description>Comment_Id</description>
+        <label>Comment Id</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>FeedItem_Title__c</fullName>
+        <label>FeedItem Title</label>
+        <length>200</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Github_Issue__c</fullName>
+        <description>Github_Issue</description>
+        <label>Github Issue</label>
+        <referenceTo>Github_Issue__c</referenceTo>
+        <relationshipLabel>Github Issue Comments</relationshipLabel>
+        <relationshipName>Github_Issue_Comments1</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+    </fields>
+    <fields>
+        <fullName>created_at__c</fullName>
+        <description>created_at</description>
+        <label>created at</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>updated_at__c</fullName>
+        <description>updated_at</description>
+        <label>updated at</label>
+        <type>DateTime</type>
+    </fields>
+    <label>Github Issue Comment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>Comment -{0000}</displayFormat>
+        <label>Github Issue Comment Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Github Issue Comments</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

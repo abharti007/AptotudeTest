@@ -1,0 +1,31 @@
+<apex:page controller="sds.setupcrossobjectcontroller" tabStyle="Data_Shield__tab" >
+
+ <apex:sectionHeader subtitle="Create Scenario" title="Cross Object"/>
+<apex:form id="frmMyDSRules">
+    <apex:pageBlock title="Scenario" mode="Edit" helpTitle="Data Cleanser Help" helpUrl="https://stratuscloudsolutions.secure.force.com/HelpDataCleanser">
+
+<apex:pageBlockButtons >
+ <apex:commandButton action="{!SetupCrossobjectClick}" value="Create New Rule" />
+<input type="button" ONCLICK="history.go(-1)" class="btn" value="Cancel" />
+
+
+</apex:pageBlockButtons>
+   <apex:pageMessages ></apex:pageMessages>
+        
+        <apex:pageBlocksection id="CScenario">                
+            
+                 
+                 <apex:inputText label="Scenario Name" required="true" id="ruleName" value="{!RuleName}"/>
+
+         </apex:pageBlockSection>            
+      
+
+                  
+        
+
+             
+    </apex:pageBlock>    
+                 </apex:form>               
+    
+
+</apex:page>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Short, simple descriptions of Features as told from a users point of view.
+
+Template: As a &lt;type of user&gt;, I want &lt;some goal&gt; so that &lt;some reason&gt;.</description>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Epic__c</fullName>
+        <defaultValue>false</defaultValue>
+        <inlineHelpText>Is this a very high-level user story that will probably need to be split into smaller user stories?</inlineHelpText>
+        <label>Epic</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Story__c</fullName>
+        <inlineHelpText>Aka the Parent User Story</inlineHelpText>
+        <label>Parent Story</label>
+        <referenceTo>User_Story__c</referenceTo>
+        <relationshipLabel>Related Stories</relationshipLabel>
+        <relationshipName>Related_Stories</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Release_Date__c</fullName>
+        <formula>Release__r.GA_Release_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Release Date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <inlineHelpText>If this user story was small enough to be in one release, which release was it in? For larger stories, look at the Child Stories list to see the release information.</inlineHelpText>
+        <label>Release</label>
+        <referenceTo>Release__c</referenceTo>
+        <relationshipLabel>User Stories</relationshipLabel>
+        <relationshipName>User_Stories</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Story__c</fullName>
+        <inlineHelpText>As a &lt;type of user&gt;, I want &lt;some goal&gt; so that &lt;some reason&gt;.</inlineHelpText>
+        <label>Story</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Success_Criteria__c</fullName>
+        <inlineHelpText>Aka Conditions of Satisfaction. What are some of the criteria that will determine whether or not this is successful? Additional detail can be added in google docs and attachments.</inlineHelpText>
+        <label>Success Criteria</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <label>User Story</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Title</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>User Stories</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

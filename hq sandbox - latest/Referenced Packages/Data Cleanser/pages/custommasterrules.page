@@ -1,0 +1,104 @@
+<apex:page controller="sds.custommasterrulescontroller" tabStyle="Data_Shield__tab" >
+ 
+  <apex:sectionHeader title="Duplicate" subtitle="Master Rules"/>
+ 
+ <apex:form id="frmMyDSRules">
+
+<apex:actionPoller rerender="frmMyDSRules" interval="15"/> 
+{!CheckMassBatchRuning}
+ <apex:pageBlock helpTitle="Data Cleanser Help" helpUrl="https://stratuscloudsolutions.secure.force.com/HelpDataCleanser" >
+<apex:PageMessages ></apex:PageMessages>
+
+   <apex:pageBlockButtons >
+       <apex:commandButton value="New Rule" action="{!CreateRules}"/>
+      <apex:commandButton action="{!CancelClick}" value="Cancel" />
+
+      
+      
+      
+      
+       </apex:pageBlockButtons>
+  
+ <apex:pageBlockSection columns="1">
+ <apex:pageBlockSectionItem >
+  In order to use multi-select merge, we need you to select a rule. Please check the list to see if there is a rule
+you would like to use. Otherwise click the "New Rule" button and you will be walked through the steps to create 
+a custom Master Rule. Once you have Master Rule you would like to use then click on the "Duplicate Groups" Tab 
+where you must first select the object and then the records you wish to merge.
+Once you select the groups you want merged, click on the "Mass Merge" or "Select Merge" button to choose your rule
+by selecting the "Merge" button of that rule.
+ </apex:pageBlockSectionItem>
+ </apex:pageBlockSection>      
+  <apex:pageBlockSection columns="2">       
+       
+            <apex:pageBlockSectionItem ><div align="right">Please select the Object you wish to make changes to:</div></apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:selectList value="{!selectedObject}" id="cbxlevel2" size="1">
+                <apex:actionSupport event="onchange" action="{!ObjectChnage}" ></apex:actionSupport>
+                
+                    <apex:selectOptions value="{!objectNames}"/>
+                
+                   
+                </apex:selectList>
+                 
+            </apex:pageBlockSectionItem>  
+        </apex:pageBlockSection> 
+        
+       
+
+     
+       
+        <apex:pageBlockTable value="{!MasterRuleListByType}" var="o" rendered="{!NOT(ISNULL(MasterRuleListByType))}">
+                
+                  <apex:column headerValue="Master Rule">   
+                  <a href="editCustomemasterrules?id={!o.Id}&Objectid={!selectedObject}">{!o.Name}</a>
+                  </apex:column>
+                  
+                 
+                   <apex:column value="{!o.sds__Score_Delta__c}"></apex:column>      
+                    <apex:column value="{!o.sds__Use_Score_Delta__c}"></apex:column>      
+                        
+                     
+                        <apex:column headerValue="Activate Scenario">                
+
+    <apex:commandButton action="{!ActivateRule}" value="Activate"  style="font-weight:bold" 
+    disabled="{!o.sds__Active__c}" onclick="javascript: return MasterRuleDetails('{!o.Id}');" 
+    rendered="{!(not(o.sds__Activating_Scenario__c) && not(o.sds__Active__c))}">
+    
+     <apex:param value="{!o.Id}" id="ruleid" name="ruleid"/>
+    </apex:commandButton>
+
+<apex:outputText rendered="{!(o.sds__Activating_Scenario__c)}"><font color="Blue"><b>Processing...</b></font></apex:outputText>
+<apex:outputText rendered="{!(not(o.sds__Activating_Scenario__c) && o.sds__Active__c)}"><font color="green"><b>Activated</b></font> </apex:outputText>
+
+</apex:column> 
+
+ <apex:column headerValue="Mass Merge">                
+                     
+                     <apex:commandButton rendered="{!(o.sds__Mass_Merge_Status__c=='Completed')}"  onclick="javascript: return MasterRuleDetails('{!o.Id}');" value="Mass Merge" action="{!MassMergeClick}" />
+                     
+                     <apex:outputText rendered="{!(o.sds__Mass_Merge_Status__c=='In-Progress')}"><font color="Blue"><b>Processing...</b></font></apex:outputText>
+                     
+                     </apex:column>  
+                   
+                    
+                     <apex:column headerValue="Tool">                    
+
+                     <apex:commandLink rendered="{!(not(o.sds__Activating_Scenario__c) && not(o.sds__Active__c))}" action="{!DeleteRule}" value="Delete">
+                         <apex:param value="{!o.Id}" id="Delid" name="Delid"/>
+                     </apex:commandLink>
+                     
+                      </apex:column>
+    </apex:pageBlockTable>
+                 <apex:inputHidden value="{!MasterRuleId}" id="hSelectedId"/>
+                  <script type="text/javascript">
+                        function MasterRuleDetails(userMasterId)
+                        {                    
+                            document.getElementById("{!$Component.hSelectedId}").value = userMasterId;            
+                            return true;
+                        }
+                    </script>
+
+ </apex:pageBlock> 
+  </apex:form>
+</apex:page>

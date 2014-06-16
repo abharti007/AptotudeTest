@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Software development tickets. These are high-level requirements for product development.</description>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Bug_Resolution__c</fullName>
+        <label>Bug Resolution</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <label>Description</label>
+        <length>32768</length>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Estimate_Notes__c</fullName>
+        <inlineHelpText>Be clear about factors affecting the estimate.</inlineHelpText>
+        <label>Estimate Notes</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Google_Doc_Folder__c</fullName>
+        <inlineHelpText>Put in a link to the google doc folder.</inlineHelpText>
+        <label>Google Doc/Folder</label>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Idea__c</fullName>
+        <inlineHelpText>What Idea did this ticket come from?</inlineHelpText>
+        <label>Idea</label>
+        <referenceTo>Idea</referenceTo>
+        <relationshipName>Tickets</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Ticket__c</fullName>
+        <label>Parent Ticket</label>
+        <referenceTo>Ticket__c</referenceTo>
+        <relationshipLabel>Sub-Tickets</relationshipLabel>
+        <relationshipName>Tickets</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <label>Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 - Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 - Very Important</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 - Important</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4 - Nice to Have</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5 - Free Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Release_Version__c</fullName>
+        <inlineHelpText>Which release version was this ticket included in?</inlineHelpText>
+        <label>Release Version</label>
+        <length>20</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Resources_Required__c</fullName>
+        <inlineHelpText>Briefly explain the resources required and how much of each one.</inlineHelpText>
+        <label>Resources/Skills Required</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Rough_Estimate__c</fullName>
+        <inlineHelpText>If one person worked on this, how long would it take? This is used for very rough estimates.</inlineHelpText>
+        <label>Rough Estimate</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Less than an hour</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A few hours</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A day</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A few days</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>One week</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A few weeks</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A month</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A few months</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Half a year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A year or more</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sprint__c</fullName>
+        <label>Sprint</label>
+        <referenceTo>Sprint__c</referenceTo>
+        <relationshipLabel>Tickets</relationshipLabel>
+        <relationshipName>Tickets</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Define</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Develop</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pre-release</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Released</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed - Not Released</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Ticket_Estimate__c</fullName>
+        <inlineHelpText>This is a rough, relative estimate. Estimate based on numbers 1-10. 1 is a simple bug fix, usually takes less than a few hours. 10 is a large feature that can take several weeks.</inlineHelpText>
+        <label>Ticket Estimate</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <inlineHelpText>Feature - a new piece of functionality.
+Bug - a problem with existing functionality.
+Change - a change to existing functionality that does not add new functionality.
+Chore - a development task needed for continued operations.</inlineHelpText>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Feature</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bug</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chore</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Operational Need</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile Application</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>Ticket</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Sprint__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Ticket_Estimate__c</columns>
+        <columns>Parent_Ticket__c</columns>
+        <columns>Release_Version__c</columns>
+        <columns>Idea__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Backlog</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Parent_Ticket__c</columns>
+        <columns>Resources_Required__c</columns>
+        <columns>Rough_Estimate__c</columns>
+        <columns>Estimate_Notes__c</columns>
+        <columns>Idea__c</columns>
+        <columns>Sprint__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Released,Closed - Not Released</value>
+        </filters>
+        <label>1. Backlog</label>
+    </listViews>
+    <listViews>
+        <fullName>Current_Test_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Sprint__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Ticket_Estimate__c</columns>
+        <columns>Parent_Ticket__c</columns>
+        <columns>Release_Version__c</columns>
+        <columns>Idea__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Test</value>
+        </filters>
+        <label>3. Current Test Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>Dev_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Sprint__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Ticket_Estimate__c</columns>
+        <columns>Parent_Ticket__c</columns>
+        <columns>Release_Version__c</columns>
+        <columns>Idea__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Released,Closed - Not Released,Test,Pre-release</value>
+        </filters>
+        <label>2. Dev Queue</label>
+    </listViews>
+    <listViews>
+        <fullName>X4_Pre_release</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Sprint__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Ticket_Estimate__c</columns>
+        <columns>Parent_Ticket__c</columns>
+        <columns>Release_Version__c</columns>
+        <columns>Idea__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Pre-release</value>
+        </filters>
+        <label>4. Pre-release</label>
+    </listViews>
+    <listViews>
+        <fullName>X5_Released</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Sprint__c</columns>
+        <columns>Priority__c</columns>
+        <columns>Ticket_Estimate__c</columns>
+        <columns>Parent_Ticket__c</columns>
+        <columns>Release_Version__c</columns>
+        <columns>Idea__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sprint__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Released</value>
+        </filters>
+        <label>5. Released</label>
+    </listViews>
+    <nameField>
+        <label>Ticket Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Tickets</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

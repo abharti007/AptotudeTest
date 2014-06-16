@@ -1,0 +1,13 @@
+<apex:page action="{!OnLoad}" controller="sds.leadConvertextensions">
+<apex:sectionHeader title="Convert Lead"/>
+<apex:pageBlock >
+<apex:pageMessages ></apex:pageMessages>
+<apex:form >
+
+<b>Are you sure, you want to convert this lead ? </b>
+<apex:commandButton action="{!Onsubmit}"  value="Convert" title="Convert"/>
+
+</apex:form>
+</apex:PageBlock>
+
+</apex:page>

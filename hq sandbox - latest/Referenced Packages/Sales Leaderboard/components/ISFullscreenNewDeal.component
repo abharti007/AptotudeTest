@@ -1,0 +1,51 @@
+<apex:component >
+
+  <apex:stylesheet value="{!$Resource.SalesLeader__ISFullscreenNewDealCSS}" />
+  <apex:includeScript value="{!$Resource.SalesLeader__ISFullscreenNewDealJS}" />
+
+  <style type="text/css">
+    .new_deals .intro { background: #333 url({!URLFOR($Resource.ISFullscreenLib, '/lib/img/grid-bk1.png')}); }
+    .newdeal_component .new_deal { background: url({!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_bk_stripe_white.png')}) rgba(0,0,0,.4); }
+    .bluebox { background: rgba(0,179,233,.8) url({!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_bk_stripe_white.png')}); }
+  </style>
+
+  <div class="newdeal_component">
+    <audio class="swoosh_player" height="0" width="0">
+      <source src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/swoosh.mp3')}" type="audio/mpeg"/>
+      <source src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/swoosh.ogg')}" type="audio/ogg"/>
+      <embed src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/swoosh.mp3')}"/>
+    </audio>
+    <audio class="swoosh_out_player" height="0" width="0">
+      <source src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/fast_swoosh.mp3')}" type="audio/mpeg"/>
+      <source src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/fast_swoosh.ogg')}" type="audio/ogg"/>
+      <embed src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/fast_swoosh.mp3')}"/>
+    </audio>
+    <audio class="sub_bass_player" height="0" width="0">
+      <source src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/sub_bass.mp3')}" type="audio/mpeg"/>
+      <source src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/sub_bass.ogg')}" type="audio/ogg"/>
+      <embed src="{!URLFOR($Resource.ISFullscreenLib, '/lib/audio/sub_bass.mp3')}"/>
+    </audio>
+    <div class="new_deals">
+      <div class="intro">
+        <div class="stage">
+          <div class="thing d"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_blue_box1.png')}"></img></div>
+          <div class="thing e"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_blue_box2.png')}"></img></div>
+          <div class="thing i"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_blue_box1.png')}"></img></div>
+          <div class="bluebox_shadow"></div>
+          <div class="bluebox"></div>
+          <div class="thing a"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_black_box1.png')}"></img></div>
+          <div class="thing b"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_black_box1.png')}"></img></div>
+          <div class="thing c"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_blue_box1.png')}"></img></div>
+          <div class="thing f"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_grey_box1.png')}"></img></div>
+          <div class="thing g"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_blue_box2.png')}"></img></div>
+          <div class="thing h"><img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_blue_box2.png')}"></img></div>
+          <div class="new_deal_container">
+            <span class="vertical_aligner"></span>
+            <img src="{!URLFOR($Resource.ISFullscreenLib, '/lib/img/stream_new_deal_text.png')}"></img>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</apex:component>

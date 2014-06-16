@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>UM_SingleOrg</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_SingleOrg</shortDescription>
+        <value>Single Organization</value>
+    </labels>
+    <labels>
+        <fullName>UM_activeOnly</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_activeOnly</shortDescription>
+        <value>Active Only</value>
+    </labels>
+    <labels>
+        <fullName>UM_allOrgs</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_allOrgs</shortDescription>
+        <value>All Organizations</value>
+    </labels>
+    <labels>
+        <fullName>UM_anyStatus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_anyStatus</shortDescription>
+        <value>Any Status</value>
+    </labels>
+    <labels>
+        <fullName>UM_defaultDateLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_defaultDateLabel</shortDescription>
+        <value>Last 30 Days</value>
+    </labels>
+    <labels>
+        <fullName>UM_defaultShowLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_defaultShowLabel</shortDescription>
+        <value>Total Visualforce Page Views</value>
+    </labels>
+    <labels>
+        <fullName>UM_freeOnly</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_freeOnly</shortDescription>
+        <value>Free Only</value>
+    </labels>
+    <labels>
+        <fullName>UM_last2Days</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_last2Days</shortDescription>
+        <value>Last 2 Days</value>
+    </labels>
+    <labels>
+        <fullName>UM_last30Days</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_last30Days</shortDescription>
+        <value>Last 30 Days</value>
+    </labels>
+    <labels>
+        <fullName>UM_last7Days</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_last7Days</shortDescription>
+        <value>Last 7 Days</value>
+    </labels>
+    <labels>
+        <fullName>UM_loadingData</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_loadingData</shortDescription>
+        <value>Loading chart data...</value>
+    </labels>
+    <labels>
+        <fullName>UM_noDataFound</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_noDataFound</shortDescription>
+        <value>No results found for this app.</value>
+    </labels>
+    <labels>
+        <fullName>UM_nothingSelected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_nothingSelected</shortDescription>
+        <value>No organization has been specified. Make a selection and click &apos;View Metrics&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>UM_selectApp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_selectApp</shortDescription>
+        <value>...Select an App</value>
+    </labels>
+    <labels>
+        <fullName>UM_top5ObjCount</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_top5ObjCount</shortDescription>
+        <value>Top 5 Objects by Record Count</value>
+    </labels>
+    <labels>
+        <fullName>UM_top5VFPages</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_top5VFPages</shortDescription>
+        <value>Top 5 Visualforce Pages</value>
+    </labels>
+    <labels>
+        <fullName>UM_totalRecordCount</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_totalRecordCount</shortDescription>
+        <value>Total Record Count</value>
+    </labels>
+    <labels>
+        <fullName>UM_totalVFPageViews</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_totalVFPageViews</shortDescription>
+        <value>Total Visualforce Page Views</value>
+    </labels>
+    <labels>
+        <fullName>UM_trialOnly</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_trialOnly</shortDescription>
+        <value>Trial Only</value>
+    </labels>
+    <labels>
+        <fullName>UM_viewLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_viewLabel</shortDescription>
+        <value>View Usage Metrics for:</value>
+    </labels>
+    <labels>
+        <fullName>UM_viewMetrics</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UM_viewMetrics</shortDescription>
+        <value>View Metrics</value>
+    </labels>
+</CustomLabels>

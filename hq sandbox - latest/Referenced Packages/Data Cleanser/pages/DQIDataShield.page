@@ -1,0 +1,41 @@
+<apex:page action="{!PageLoad}" controller="sds.clsDataShieldMasterRules" 
+title="My Data Shield Rules" tabStyle="Data_Shield__tab">
+  <!-- Begin Default Content REMOVE THIS -->
+<apex:form id="frmMyDSRules">
+    <apex:pageBlock >    
+        <apex:pageBlockSection >            
+            <apex:pageBlockSectionItem >  
+            <apex:image value="{!$Resource.sds__sLogo}" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >  
+                <apex:panelGroup ><br/><br/>
+                   
+                    <apex:commandButton style="width:150px;height:30px" action="{!showScenarioMasterList}" value="Edit Scenario" /><br/><br/>
+                    <apex:commandButton style="width:150px;height:30px" action="{!showActivateScenarioPage}" value="Activate Scenario" />  <br/><br/>               
+                    
+                    <apex:commandButton style="width:150px;height:30px" action="{!showActivateScenarioPage}" value="Preferences" />
+                    
+                </apex:panelGroup>
+            </apex:pageBlockSectionItem>              
+        </apex:pageBlockSection>                    
+    </apex:pageBlock>          
+    <apex:inputHidden value="{!MasterRule}" id="hMasterRule"/>         
+    <script type="text/javascript">
+        function MasterRuleDetails(userMasterId)
+        {                    
+            document.getElementById("{!$Component.hMasterRule}").value = userMasterId;
+            //alert(userMasterId);
+            return true;
+        }
+        function setCheckBoxValue()
+        {                    
+            if(document.getElementById("{!$Component.idEnabled}").value == true)
+                alert("Checked");
+            else
+                alert("Not Checked");                
+            return true;
+        }            
+    </script>        
+</apex:form>        
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,74 @@
+<apex:page showHeader="false" >
+  <apex:pageBlock title="Log a Case" >
+
+ <apex:pageMessage summary="If you are unsure how to resolve this issue, please Log a Case and we can help you." severity="info" strength="3" />
+                       
+<script type="text/javascript">
+function validateForm()
+{
+
+
+var EmailV=document.forms["CaseLogForm"]["email"].value;
+var atpos=EmailV.indexOf("@");
+var dotpos=EmailV.lastIndexOf(".");
+if (atpos<1 || dotpos<atpos+2 || dotpos+2>=EmailV.length)
+  {
+  alert("Not a valid e-mail address");
+  return false;
+  }
+
+  var subjectV=document.forms["CaseLogForm"]["subject"].value;
+  if(subjectV=='')
+  {
+      alert("Please enter subject");
+      return false;
+  }
+  var ContactnameV=document.forms["CaseLogForm"]["name"].value;
+  if(ContactnameV=='')
+  {
+      alert("Please enter contact name");
+      return false;
+  }
+  
+   var descriptionV=document.forms["CaseLogForm"]["description"].value;
+  if(descriptionV=='')
+  {
+      alert("Please enter description");
+      return false;
+  }
+   var phoneV=document.forms["CaseLogForm"]["phone"].value;
+  if(phoneV=='')
+  {
+      alert("Please enter phone");
+      return false;
+  }
+  
+  
+
+}
+</script>             
+
+          
+<form name="CaseLogForm" onsubmit="return validateForm();" action="https://www.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+<input type="hidden" name="orgid" value="00DA0000000IrUy" />
+<input type="hidden" name="retURL" value="http://www.stratuscloudsolutions.com/w_thankyouforcase" />
+
+
+
+
+
+<table width="100%">
+<tr><td><label for="name">Contact Name(*)</label></td><td><input  id="name" maxlength="80"  name="name" value="{!$User.FirstName} {!$User.LastName}" size="20" type="text" /></td></tr>
+<tr><td><label for="email">Email(*)</label></td><td><input  id="email" maxlength="80"  value="{!$User.Email}"  name="email" size="20" type="text" /></td></tr>
+<tr><td><label for="phone">Phone(*)</label></td><td><input  id="phone" maxlength="40" value="{!$User.Phone}" name="phone" size="20" type="text" /></td></tr>
+<tr><td><label for="subject">Subject(*)</label></td><td><input  id="subject" maxlength="80" name="subject" value="Error : Manual Merge" size="20" type="text" /></td></tr>
+<tr><td><label for="description">Description(*)</label></td><td><textarea  rows="5" cols="60" name="description"></textarea></td></tr>
+<tr><td></td><td><input type="submit" class="btn" name="submit" />
+ 
+</td></tr>
+</table>
+</form>
+              </apex:pageBlock>
+            
+</apex:page>

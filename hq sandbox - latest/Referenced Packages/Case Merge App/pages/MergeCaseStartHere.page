@@ -1,0 +1,110 @@
+<apex:page controller="FbD_CM.MergeCaseStartController" sidebar="false" showChat="false">
+    <style type="text/css">
+        h1 { 
+            color: rgb(232, 37, 37);
+            font-weight: bold;
+            font-size: 14pt;
+            font-family: Verdana,Arial,Sans-Serif;
+        }
+        h2 {
+            color: rgb(232, 37, 37);
+            font-size: 12pt;
+        }
+        #heading {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #use-case {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <apex:form >
+        <apex:actionFunction action="{!validateSettings}" name="validateSettings" reRender="pageErrors"/>
+        <script>window.setTimeout(validateSettings, 1000);</script>
+        <apex:pageMessages id="pageErrors"/>
+    </apex:form>
+
+    <div id="heading">
+        <h1>Congratulations, you have installed the Case Merge app!</h1><br/>
+    </div>
+    
+    <div id="use-case">
+        <div id="heading">
+            <h2>Adding the Case Merge Button to the Case List View</h2>
+        </div>
+        
+        <table border="0" cellspacing="10px" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td><apex:image value="{!URLFOR($Resource.FbD_CM__CMNavigateSearchLayout)}"/></td>
+                    <td width="400px">
+                        <ol>
+                            <li>Click <b>Your Name | Setup. </b></li>
+                            <li>Under App Setup, select the arrow next to <b>Customize,</b> then the arrow next to <b>Cases</b>.</li>
+                            <li>Click on <b>Search Layouts.</b></li>
+                            <li>Select the <b>Edit</b> button to the left of <b>Cases List View.</b></li>
+                            <li>On the Edit screen, select <b>Merge Cases</b> from the multi-select picklist and click <b>Add.</b></li>
+                            <li>You can adjust the order of the buttons if you wish.</li>
+                            <li>Then click <b>Save.</b></li>
+                        </ol>
+                    </td>
+                    <td><apex:image value="{!URLFOR($Resource.FbD_CM__CMCasesListViewAddButton)}"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="use-case">
+        <div id="heading">
+            <h2>Adding the Case Merge Button to the Case Record Page</h2>
+        </div>
+            
+        <table border="0" cellspacing="10px" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="400px">
+                        <ol>
+                            <li>Click <b>Your Name | Setup.</b></li>
+                            <li>Under App Setup, select the arrow next to <b>Customize,</b> then the arrow next to <b>Cases</b>.</li>
+                            <li>Click on <b>Page Layouts.</b></li>
+                            <li>Select the Page Layout you want to add the <b>Merge Case</b> button to.</li>
+                            <li>In the upper left of the palette, select <b>Buttons.</b></li>
+                            <li>Drag and drop the <b>Merge Case</b> button from the palette into the <b>Custom Buttons</b> area. Click <b>Save.</b></li>
+                            <li>Click <b>Save.</b></li>
+                        </ol>
+                    </td>
+                    <td><apex:image width="600px" value="{!URLFOR($Resource.FbD_CM__CMPageLayoutAddButton)}"/></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div id="heading">
+            <i><b>Note:</b> To remove the <b>Merge Case</b> button from the Page Layout, simply drag it from the <b>Custom Buttons</b> area and drop it back on the palette. Then click <b>Save</b>.</i>
+        </div>
+    </div>
+    
+    <div id="use-case">
+        <div id="heading">
+            <h2>Case Merge Related List: Removing Edit and Delete Permissions from a User Profile</h2>
+        </div>
+        
+        <table border="0" cellspacing="10px" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="400px">
+                        <ol>
+                            <li>Click <b>Your Name | Setup | Manage Users | Profiles.</b></li>
+                            <li>Select the <b>Edit</b> link next to the profile page you need to edit.</li>                           
+                            <li>Scroll to the bottom of the page.  Under <b>Custom Object Permissions</b>, locate the Case Merge History.</li> 
+                            <li>De-select the <b>Edit</b> and <b>Delete</b> permissions under Basic Access.</li>
+                            <li>Click <b>Save</b>.</li>
+                        </ol>
+                    </td>
+                   <td><apex:image width="600px" value="{!URLFOR($Resource.FbD_CM__CMProfileSettings)}"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</apex:page>

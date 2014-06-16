@@ -1,0 +1,128 @@
+<apex:page title="Data Cleanser" controller="sds.UserLicenseControl" tabStyle="Data_Shield__tab">
+<apex:form >
+<script>
+    function confirmCancel() 
+    {
+        var isCancel = confirm("Are you sure ?");
+        if (isCancel) 
+            return true;  
+        return false;
+    }  
+</script>
+  
+<apex:sectionHeader title="Data Cleanser" />
+    <apex:pageBlock mode="Read">
+        
+<table width="100%">
+            <tr>
+                
+    
+                <td  valign="top">   
+                    <table   align="center" width="100%">
+                        <tr>
+                            <td>
+<style>
+.gopro
+{
+background:url({!$Resource.Gopro}) no-repeat 10px 8px;
+text-indent:30px;
+display:block;
+}
+
+a.buttonDS
+    {
+background:url({!$Resource.button}) no-repeat;
+display:block;
+color:#555555;
+font-weight:bold;
+height:30px;
+line-height:29px;
+margin-bottom:14px;
+text-decoration:none;
+width:150px;
+font-size:11px;
+
+}
+a:hover.buttonDS{
+color:#0066CC;
+text-decoration:none;
+}
+
+</style>
+
+<iframe src="http://www.stratuscloudsolutions.com/w_UpgradePage" height="428" scrolling="no" frameborder="0" width="100%"></iframe>
+
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                        <td  style="height: 50px">
+                        
+                         <apex:commandLink styleClass="buttonDS"  action="{!GetProKey}">
+                     <span class="gopro" style="color:red;">Upgrade</span></apex:commandLink>
+                     
+                        
+                        </td>
+                        </tr>
+                        <tr>        
+                            <td>                
+                           
+                                                                     
+                            <apex:pageBlock title="Data Cleanser Pro - License Key" >
+                            <apex:PageBlockSection >
+                            <apex:pageBlockSectionItem >
+                            Name:
+                            </apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem >
+                            <apex:inputText size="60" value="{!UserName}"/>
+
+                            </apex:pageBlockSectionItem>
+                            </apex:PageBlockSection>
+                            <apex:PageBlockSection >
+
+
+                            <apex:pageBlockSectionItem >
+                            License Key:
+                            </apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem >
+                            <apex:inputText size="60" value="{!UserKey}"/>
+                            </apex:pageBlockSectionItem>
+                            </apex:PageBlockSection>
+                            <apex:PageBlockSection >
+                            <apex:pageBlockSectionItem >
+
+                            </apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem >
+                            <apex:commandButton action="{!ValidUserKey}" value="Submit"/>
+
+                           
+                            </apex:pageBlockSectionItem>
+                            </apex:PageBlockSection>
+                            </apex:pageBlock>             
+                      
+                    </td>
+                </tr>           
+                <tr>
+                <td style="height:100px;">                
+                </td>
+            </tr>
+    </table>
+    
+    </td>
+    </tr>
+    </table>
+        
+
+      
+     
+        
+</apex:pageBlock>
+        
+   
+
+
+</apex:form>
+
+
+</apex:page>

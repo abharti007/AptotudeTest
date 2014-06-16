@@ -1,0 +1,40 @@
+<apex:page controller="sds.clsDataShieldMasterRules" title="Create Scenario" tabStyle="Data_Shield__tab">
+<apex:sectionHeader subtitle="Create Scenario" title="Stratus"/>
+<apex:form id="frmMyDSRules">
+    <apex:pageBlock title="Scenario" helpTitle="Data Cleanser Help" helpUrl="https://stratuscloudsolutions.secure.force.com/HelpDataCleanser">
+
+<apex:pageBlockButtons >
+ <apex:commandButton action="{!createNewMasterRule}" value="Create New Rule" />
+ <apex:commandButton action="{!CancelClick}" value="Cancel" />
+</apex:pageBlockButtons>
+        <apex:pageblocksection columns="1">
+             <apex:pageBlockSectionItem >
+                <apex:pageMessages ></apex:pageMessages>
+             </apex:pageBlockSectionItem>
+        </apex:pageblocksection>
+        
+        <apex:pageblocksection id="CScenario">                
+             <apex:pageBlockSectionItem >
+                 <apex:outputLabel for="ruleName">Scenario Name</apex:outputLabel>
+                 <apex:inputText id="ruleName" value="{!RuleName}"/>
+             </apex:pageBlockSectionItem>
+         </apex:pageBlockSection>            
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel for="objectType"> Choose Object  </apex:outputLabel>
+                    <apex:selectList value="{!selectedObject}" size="1" id="objectType">
+                     <apex:selectOptions value="{!objectNames}"/>                
+                    </apex:selectList>
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+        
+
+                  
+        
+
+             
+    </apex:pageBlock>    
+                               
+    
+</apex:form>    
+</apex:page>

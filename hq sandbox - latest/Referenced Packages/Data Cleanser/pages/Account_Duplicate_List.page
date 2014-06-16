@@ -1,0 +1,59 @@
+<apex:page sidebar="false" showHeader="false" standardController="account"  
+extensions="sds.AccountDuplicateListController">
+<b>{!ErrorMsg}</b>
+<apex:pageBlock rendered="{!NOT(ISNULL(ListAccount))}">
+<apex:pageBlockButtons rendered="{!ButtonDisplay}" >
+
+
+<input type="button" class="btn"  value="Merge" onclick="MergeClick();" />
+
+
+<input type="hidden" name="HidMerge" id="HidMerge" value="{!StratusDuplicate}" />
+
+</apex:PageBlockButtons>
+
+
+
+
+<apex:pageBlockTable value="{!ListAccount}" var="a"  >
+
+<apex:column >
+<apex:facet name="header">Account Name</apex:facet>
+<a href="javascript: void(0)" onclick="stopwatch('/{!a.Id}')">{!a.Name}</a>
+
+</apex:column>
+<apex:column value="{!a.Phone}"></apex:column>
+<apex:column value="{!a.BillingCity}"></apex:column>
+<apex:column value="{!a.BillingState}"></apex:column>
+
+</apex:pageBlockTable>
+
+</apex:pageBlock>
+ <script type="text/javascript">
+ function MergeClick()
+ {
+ try
+  {
+ var MergeId=document.getElementById('HidMerge');
+  stopwatch('/'+MergeId.value);
+ }
+catch(err)
+  {
+  
+  alert(err);
+  }
+  
+ }
+
+function stopwatch(NewURL) 
+{
+//alert(NewURL);
+ //alert('parent');
+ window.top.location.href=NewURL;
+ //parent.window.location.href=NewURL;
+  //alert('after parent');
+ }
+
+ 
+ </script>
+</apex:page>

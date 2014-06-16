@@ -1,0 +1,77 @@
+<apex:page extensions="sds.ManualLeadConvert" standardController="sds__Lead_Duplicate__c" >
+
+
+
+  <apex:form rendered="{!(!IsErrorOnPage)}" id="frmMergeRecs">
+  
+   <apex:actionFunction name="DisplayOrhideTask" action="{!JavaSciptVfCall}" rerender="CreateTaskSection" />
+   
+<apex:sectionHeader title="Lead Convert" />   
+Leads can be converted to case files, contacts, opportunities, and followup tasks.<br />
+You should only convert an Lead once you have identified it as qualified. <br />
+After this Lead has been converted, it can no longer be viewed or edited as an inquiry, but can be viewed in lead reports.<br /> 
+<br /> 
+
+
+<apex:pageBlock mode="edit">
+<apex:pageMessages ></apex:pageMessages>
+<apex:pageBlockButtons >
+
+
+<apex:commandButton action="{!LeadConvert}" value="Convert" />
+<apex:commandButton value="Cancel" />
+</apex:PageBlockButtons>
+<apex:pageBlockSection columns="1" title="Convert Lead" >
+<apex:inputField required="true" label="Record Owner"  value="{!ObjContact.OwnerId}"/>
+<apex:pageBlockSectionItem >
+Send Email to the Owner
+<apex:inputCheckbox value="{!SendEmail}" />
+</apex:pageBlockSectionItem>
+
+<apex:inputField required="{!(!DoNotCreateOpportunity)}" label="Opportunity Name" value="{!ObjOpportunity.Name}"/>
+
+<apex:pageBlockSectionItem >
+<b></b>
+<apex:panelGrid columns="2">
+<apex:inputCheckbox value="{!DoNotCreateOpportunity}" /> Do not create a new opportunity upon conversion.
+</apex:panelGrid>
+</apex:pageBlockSectionItem>
+
+<apex:inputField value="{!ObjLeadDuplicate.sds__Contact__c}"/>
+
+<apex:pageBlockSectionItem >
+Converted Status
+<apex:selectList value="{!SelectedLeadStatus}" id="cbxlevel2" size="1">
+                    <apex:selectOptions value="{!LeadConvertStatus}"/>
+                   
+                  </apex:selectList> 
+                 </apex:pageBlockSectionItem>
+                 <apex:pageBlockSectionItem >
+                 Create Task
+<apex:inputCheckbox value="{!IsCreateTask}" onclick="DisplayOrhideTask();"  />
+
+                 </apex:pageBlockSectionItem>
+                 
+</apex:pageBlockSection>
+
+<apex:pageBlockSection id="CreateTaskSection" columns="1" >
+
+<apex:pageBlockSection rendered="{!IsCreateTask}"  title="Task Information" >
+<apex:inputText id="TxtTaskSubject"  label="Task Subject" value="{!TaskSubject}"/>
+<apex:inputField value="{!ObjTask.Status}"/>
+<apex:inputField value="{!ObjTask.ActivityDate}"/>
+<apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+<apex:inputField value="{!ObjTask.Priority}"/>
+<apex:inputField value="{!ObjTask.Description}"/>
+<apex:inputField value="{!ObjTask.isReminderSet}"/>
+<apex:inputField value="{!ObjTask.ReminderDateTime}"/>
+</apex:PageBlockSection>
+
+</apex:PageBlockSection>
+
+
+
+</apex:pageBlock>
+</apex:form>
+
+</apex:page>

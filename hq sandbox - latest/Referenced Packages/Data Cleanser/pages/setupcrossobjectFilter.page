@@ -1,0 +1,81 @@
+<apex:page controller="sds.setupcrossobjectcontroller" tabStyle="Data_Shield__tab" >
+<apex:form >
+
+<apex:sectionHeader title="Data Cleanser" subtitle="Data Cleanser Filter Rules"/>
+    <apex:pageBlock mode="Edit">
+    <apex:PageBlockButtons >
+    <apex:commandButton value="Previous" action="{!setupcrossobject}" />                        
+    <apex:commandButton value="Save" action="{!setupcrossobjectHome}" title="Save" />
+                
+    </apex:PageBlockButtons>
+    
+    
+          <apex:pageMessages ></apex:pageMessages>
+     
+        
+          <apex:pageblocksection columns="4" title="Add a Filtering Rule" >
+         <apex:pageBlockSectionItem >
+         <apex:panelgroup >
+            <apex:outputPanel styleClass="requiredInput" layout="block">
+            <apex:outputPanel styleClass="requiredBlock" layout="block"/> 
+
+         
+           <apex:selectList value="{!FilterFieldSelVal}" size="1" id="ruleField">
+               <apex:selectOptions value="{!LeadfieldNames}"/>
+               <apex:actionSupport event="onchange" rerender="cbxlevel2"/>
+               
+             </apex:selectList>
+             
+             </apex:outputPanel>
+            </apex:panelgroup>
+                        
+        </apex:pageBlockSectionItem>                             
+        <apex:pageBlockSectionItem >         
+            <apex:panelgroup >
+            <apex:outputPanel styleClass="requiredInput" layout="block">
+            <apex:outputPanel styleClass="requiredBlock" layout="block"/>         
+                <apex:selectList value="{!FilterOperator}" id="cbxlevel2" size="1" required="true">
+                    <apex:selectOptions value="{!OperatorType}"/>
+                </apex:selectList>
+            </apex:outputPanel>
+            </apex:panelgroup>            
+         </apex:pageBlockSectionItem>
+         <apex:pageBlockSectionItem >
+                <apex:inputText value="{!FilterValue}" id="filterValue1"/>
+         </apex:pageBlockSectionItem>
+         <apex:pageBlockSectionItem >         
+                <apex:commandButton value="Add Match Filter" action="{!getFilterRules}" />
+         </apex:pageBlockSectionItem>
+        </apex:pageblocksection>  
+        
+        
+           <apex:pageBlockSection columns="1">
+              <apex:pageBlockSectionItem >           
+              If you wish to run your rules only on certain records within your SF.com database you can 
+              create Filtering Rules to accomplish this. An example would be I only want new records to be compared
+              with records that are in the Country = USA.
+            </apex:pageBlockSectionItem>           
+        </apex:pageBlockSection>
+        
+        
+          <apex:pageBlockSection columns="1"   title="Filter Rule List" id="filterList2" >
+             <apex:dataTable width="100%" value="{!ListObjFilter}" var="a" styleClass="list">
+                  <apex:inputHidden value="{!a.id}" required="false"/>
+                  <apex:inputHidden value="{!a.sds__ObjectName__c}" required="false"/>
+                  <apex:column ><apex:outputField value="{!a.sds__FieldName__c}" /></apex:column>
+                  <apex:column ><apex:outputField value="{!a.sds__OperatorType__c}" /></apex:column>
+                  <apex:column ><apex:outputField value="{!a.sds__FilterValue__c}" /></apex:column>
+                 <apex:column >
+                <apex:commandLink action="{!RemoveFilter}" style="font-weight:bold" value="Delete">
+                    <apex:param value="{!a.Name}" id="filterid" name="filterid"/>
+                </apex:commandLink>
+
+                  </apex:column>                 
+                </apex:dataTable> 
+                 
+        </apex:pageBlockSection> 
+        
+    
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

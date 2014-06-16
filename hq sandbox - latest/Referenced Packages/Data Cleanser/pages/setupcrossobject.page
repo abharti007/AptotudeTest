@@ -1,0 +1,112 @@
+<apex:page controller="sds.setupcrossobjectcontroller" tabStyle="Data_Shield__tab" >
+
+ <apex:form >
+
+<apex:sectionHeader title="Data Cleanser " subtitle="Edit Cross Object Scenario"/>
+    <apex:pageBlock mode="Edit" >
+   
+    <apex:PageBlockButtons >
+    <apex:commandButton action="{!setupcrossobjectFilter}" value="Next" />
+    <input type="button" ONCLICK="history.go(-1)" class="btn" value="Cancel" />
+    </apex:PageBlockButtons>
+
+    <apex:pageMessages ></apex:pageMessages>
+        
+        <apex:pageblocksection title="Create Scenario" id="CScenario">                
+             <apex:pageBlockSectionItem >
+             
+             
+                 <apex:outputLabel for="ruleName">Scenario Name</apex:outputLabel>
+                 
+                 
+
+
+
+                 <apex:outputLabel id="ruleName"   value="{!RuleName}"/>
+                 
+
+           
+                 
+             </apex:pageBlockSectionItem>
+         </apex:pageBlockSection>            
+           
+    <apex:pageBlockSection columns="1">
+      <apex:pageBlockSectionItem >           
+      This Step is used to define your matching criteria. Please create matching rules
+      that will be used to identify duplicates when a match is found in your SF.com database.
+      </apex:pageBlockSectionItem>           
+    </apex:pageBlockSection>
+    
+    
+    <apex:pageBlockSection columns="4" title="Add a Matching Rule" >
+      <apex:pageBlockSectionItem >           
+
+<apex:panelgroup >
+            <apex:outputPanel styleClass="requiredInput" layout="block">
+            <apex:outputPanel styleClass="requiredBlock" layout="block"/> 
+
+              <apex:selectList value="{!LeadMatchField}" size="1" id="ruleField">
+               <apex:selectOptions value="{!LeadfieldNames}"/>
+             </apex:selectList>
+             
+             
+</apex:outputPanel>
+            </apex:panelgroup>
+             
+      </apex:pageBlockSectionItem>           
+      <apex:pageBlockSectionItem >   
+      
+                    
+              <apex:selectList value="{!MatchType}" size="1" id="matchType">
+               <apex:selectOptions value="{!matchTypeList}"/>
+              </apex:selectList>   
+      </apex:pageBlockSectionItem>  
+      
+      <apex:panelgroup >
+            <apex:outputPanel styleClass="requiredInput" layout="block">
+            <apex:outputPanel styleClass="requiredBlock" layout="block"/> 
+
+
+
+             <apex:selectList value="{!MatchField}" size="1" id="ruleField">
+               <apex:selectOptions value="{!fieldNames}"/>
+             </apex:selectList>
+             
+     
+</apex:outputPanel>
+            </apex:panelgroup>
+
+                      
+      <apex:pageBlockSectionItem >           
+             <apex:commandButton value="Add Match Rule"  action="{!getMatchRules}" />        
+      </apex:pageBlockSectionItem>           
+
+    </apex:pageBlockSection>
+    
+    <apex:pageBlockSection columns="1" title="List of Rules">
+        
+              <apex:dataTable width="100%" value="{!ListObjFldMthTypRule}" var="a" styleClass="list">
+              
+                <apex:column ><apex:outputField value="{!a.sds__Field_Name_Cross__c}" /></apex:column>
+               
+               <apex:column ><apex:outputField value="{!a.sds__MatchType__c}" /></apex:column>              
+               
+                <apex:column ><apex:outputField value="{!a.sds__FieldName__c}" /></apex:column>
+
+                <apex:column >
+                <apex:commandLink action="{!RemoveRule}" style="font-weight:bold" value="Delete">
+                    <apex:param value="{!a.Name}" id="ruleid" name="ruleid"/>
+                </apex:commandLink>
+
+                  </apex:column>
+              </apex:dataTable> 
+          
+       
+    </apex:pageBlockSection> 
+    
+           
+    </apex:pageBlock>    
+    </apex:form>                                  
+    
+    
+</apex:page>

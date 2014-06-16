@@ -1,0 +1,110 @@
+<apex:page controller="sds.editCustomemasterrulescontroller" tabStyle="Data_Shield__tab">
+  <apex:sectionHeader title="Stratus" subtitle="Edit Rule"/>
+  <apex:form >
+ 
+      <apex:actionFunction name="OnObjectSelect" >
+          <apex:param name="ObjectType" assignTo="{!ObjMaster.sds__Object__c}" value="" />
+      </apex:actionFunction>
+
+      <apex:actionFunction name="OnObjectField" >
+          <apex:param name="ObjectType" assignTo="{!ObjMasterRules.sds__Field__c}" value="" />
+      </apex:actionFunction>
+      
+      
+        <apex:actionFunction name="OnObjectConstraint" >
+          <apex:param name="ObjectType" assignTo="{!ObjMasterRules.sds__Constraint__c}" value="" />
+      </apex:actionFunction>
+      
+
+      
+  <apex:pageBlock mode="Edit">
+        
+            <apex:pageMessages ></apex:pageMessages>
+  <apex:PageBlockButtons >
+  <apex:commandButton value="Save" action="{!SubmitAddNewMasterRule}" />
+
+<input type="button" ONCLICK="history.go(-1)" class="btn" value="Cancel" />
+
+  </apex:PageBlockButtons>
+ 
+      <apex:pageBlockSection title="Master Rule">
+              <apex:inputField required="true" value="{!ObjMaster.Name}"/>
+             
+               <apex:PageBlockSectionItem >
+                   
+              
+                 <label>Object</label>      
+                         
+<apex:outputField value="{!ObjMaster.sds__Object__c}"/>                         
+              </apex:PageBlockSectionItem>
+             
+                
+              <apex:inputField value="{!ObjMaster.sds__Use_Score_Delta__c}"/>
+              <apex:inputField value="{!ObjMaster.sds__Score_Delta__c}"/>
+      </apex:pageBlockSection>
+ 
+ 
+          <apex:pageBlockSection columns="5" title="Add New Rule" >
+         
+          <apex:PageBlockSectionItem >
+           
+               <label>Field</label>
+              
+                <apex:selectList onChange="OnObjectField(this.value)" value="{!ObjMasterRules.sds__Field__c}"  size="1" id="FieldSelectList">
+                  <apex:selectOptions value="{!Field}"/>
+                  </apex:selectList> 
+          </apex:PageBlockSectionItem>
+         
+         
+          <apex:pageBlockSectionItem >
+              <label>Constraint</label>
+                <apex:selectList onChange="OnObjectConstraint(this.value)" value="{!ObjMasterRules.sds__Constraint__c}" size="1" id="Constraint">
+                  <apex:selectOptions value="{!Constraint}"/>
+                  </apex:selectList> 
+          </apex:PageBlockSectionItem>
+         
+         
+             
+               <apex:inputField rendered="{!DisplayUser}" value="{!ObjMasterRules.sds__Record_Owner__c}"/>
+              <apex:inputField rendered="{!DisplayValue}" value="{!ObjMasterRules.sds__Value__c}"/>
+             
+              
+              <apex:inputField value="{!ObjMasterRules.sds__Score__c}"/>
+              <apex:commandButton value="Add" action="{!AddNewRule}"/>
+           </apex:pageBlockSection>
+          
+          
+          
+          
+          
+          
+         <apex:pageBlockSection columns="1" title="List of Rules" rendered="{!not(isnull(ListMasterRules))}">
+             <apex:PageBlockTable value="{!ListMasterRules}" var="a" styleClass="list">
+                     
+                  
+                   <apex:column value="{!a.sds__Field__c}" ></apex:column>              
+                   <apex:column value="{!a.sds__Constraint__c}"></apex:column>
+                                 
+                    <apex:column headerValue="Value">
+                   
+                    <apex:outputField value="{!a.sds__Value__c}"/>
+                      <apex:outputField value="{!a.sds__Record_Owner__c}"/>
+                   
+                    </apex:column>              
+                    <apex:column value="{!a.sds__Score__c}"></apex:column>              
+                   <apex:column headerValue="Tool" >
+               
+                   <apex:commandLink action="{!RemoveRule}" style="font-weight:bold" value="Delete">
+                    <apex:param value="{!a.Name}" id="ruleid" name="ruleid"/>
+                </apex:commandLink>
+               
+                   </apex:column>
+                  </apex:PageBlockTable>
+        </apex:pageBlockSection>      
+  
+  </apex:pageBlock>
+ 
+   
+   
+  </apex:form>
+</apex:page>

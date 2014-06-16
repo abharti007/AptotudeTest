@@ -1,0 +1,50 @@
+<apex:page standardController="Opportunity" tabstyle="Opportunity" extensions="ContactRoleVFPController">
+	<apex:sectionheader title="Contact Role for {!opportunity.Name}"/>
+	<apex:form >
+		<apex:pageblock title="Contact Role for {!opportunity.Name}">
+			<apex:pageblockbuttons >
+				<apex:commandbutton value="Save" action="{!save}" />
+				<apex:commandbutton value="Cancel" action="{!cancel}"/>
+			</apex:pageblockbuttons>
+			<style>
+				.detailList td,.detailList th{padding-bottom: 4px;}
+			</style>
+			<table class="detailList" border="0" cellpadding="0" cellspacing="0" style="width:auto;">
+				<tbody>
+					<tr>
+						<th class="radioCol">Primary</th>
+						<th>Contact</th>
+						<th>Role</th>
+					</tr>					
+					<apex:repeat value="{!contactRoles}" var="r">
+						<tr>
+							<th class="radioCol">
+								<input type="radio" value="{!r.idx}" name="radio" id="radio_{!r.idx}" onclick="setSelected({!r.idx});"/>
+							</th>
+							<td class="data">
+								<apex:inputfield value="{!r.ocr.contactId}" rendered="{!r.showField}" required="false"/>
+								<apex:outputtext value="No Primary Contact"  rendered="{!Not(r.showField)}" />
+							</td>
+							<td class="data">
+								<apex:inputfield value="{!r.ocr.Role}" rendered="{!r.showField}" />
+							</td>
+						</tr>	
+					</apex:repeat>
+				</tbody>
+			</table>	
+			<apex:inputhidden value="{!primaryContactId}" id="primaryContactId"/>
+			<script>
+				var primaryContactId = '{!$component.primaryContactId}';
+				function setSelected(id){
+					document.getElementById(primaryContactId).value = id;
+				}
+				
+				var val = '{!primaryContactId}';
+				if(document.getElementById('radio_' +val)){
+					document.getElementById('radio_' +val).checked = 'checked';
+				}
+				
+			</script>
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

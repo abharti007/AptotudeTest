@@ -1,0 +1,45 @@
+<apex:page standardController="Opportunity">
+	<div class="listRelatedObject Custom41Block">
+                            <div class="bPageBlock brndScnBrd secondaryPalette">
+                                <div class="pbHeader">
+                                    <table border="0" cellpadding="0" cellspacing="0" style="font-size:12px;">
+                                        <tbody>
+                                            <tr>
+                                                <td class="pbTitle">
+                                                    <h3>Contact Roles</h3>                                                  
+                                                </td>
+                                                <td class="pbButton" >
+                                                    <input type="button" class="btn" value="New Contact Role" onclick="window.top.parent.location = '/apex/ContactRoleVFP?id={!opportunity.id}';" />
+                                                </td>
+                                                <td class="pbHelp">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                     </table>
+                                </div>
+                                
+                                <apeX:pageblock >
+                                	<apex:pageblocktable value="{!opportunity.OpportunityContactRoles}" var="r" >
+                                		<apex:column headervalue="Action">
+                                		 		<apex:outputlink value="/apex/ContactRoleVFP?id={!opportunity.id}" target="_parent" styleclass="actionLink">Edit</apex:outputlink>
+                                					&nbsp;|&nbsp;
+                                		 		<apex:outputlink value="{!URLFOR($Action.Opportunity.Delete, r.id,[retURL= '/'+ opportunity.id])}" target="_parent" styleclass="actionLink">Del</apex:outputlink>
+                                		</apex:column>
+                                		
+                                		<apex:column headervalue="Contact Name">
+                                		 <apex:outputlink value="/{!r.ContactId}" target="_parent" >{!r.Contact.Name}</apex:outputlink>
+                                		</apex:column> 
+                                		<apex:column headervalue="Account Name">
+                                			<apex:outputlink value="/{!r.Contact.accountid}" target="_parent" >{!r.Contact.Account.Name}</apex:outputlink>
+                                		</apex:column>
+                                		<apex:column value="{!r.Contact.phone}" headervalue="Phone"/>
+                                		<apex:column value="{!r.Contact.Email}" headervalue="Email"/>
+                                		<apex:column value="{!r.Role}" headervalue="Role"/>
+                                		<apex:column value="{!r.isPrimary}" headervalue="Primary"/>
+                                	</apex:pageblocktable>
+                                
+                                </apeX:pageblock>
+                              </div>
+                            </div>
+                          
+                                
+</apex:page>

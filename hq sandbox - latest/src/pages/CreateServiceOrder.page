@@ -1,0 +1,208 @@
+<apex:page standardController="Opportunity" tabStyle="CHANNEL_ORDERS__Service_Order__c"  showheader="false" sidebar="false" extensions="CreateServiceOrder">
+ 
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"  />
+ 
+
+<apex:form >
+<!--     <apex:pageMessages id="msgPanel"/> -->
+    <apex:outputPanel id="panel1" >
+        <apex:outputPanel rendered="{!NOT(isEditMode)}">
+            <apex:sectionheader title="Channel Order App - Edit order" />
+            <apex:pageblock title="1. Enter Customer Information">
+            <br/> 
+                <apex:pageBlockSection showheader="false" title="Customer Information Section" columns="2">
+                    <apex:inputfield label="Company Name" value="{!objOpp.AccountId}"/>
+                    <apex:inputfield label="Org ID" value="{!objLicense.sfLma__Subscriber_Org_ID__c}"/>  
+                    <apex:inputfield label="Street" value="{!objOpp.Account.BillingStreet }"/>
+                    <apex:inputfield label="City" value="{!objOpp.Account.BillingCity }"/>
+                    <apex:inputfield label="Country" value="{!objOpp.Account.BillingCountry }"/>
+                    <apex:inputfield label="State/Province/Region" value="{!objOpp.Account.BillingState }"/>
+                    <apex:inputfield label="ZIP/Postal Code" value="{!objOpp.Account.BillingPostalCode }"/>
+                </apex:pageBlockSection>
+ 
+            </apex:pageblock> 
+ 
+            <apex:pageblock title="2. Select a Contract">
+                <apex:pageBlockSection showheader="false" title="Contract Information" columns="1">
+                    <apex:selectList id="con" label="Contract" value="{!objServiceOrder.CHANNEL_ORDERS__Partner_Contract_Rules__c}" size="1" title="Contract">
+                        <apex:selectOptions value="{!Contracts}"></apex:selectOptions>
+                    </apex:selectList>
+                </apex:pageBlockSection>
+            </apex:pageblock>
+ 
+  
+            <apex:pageblock title="3. Enter Order Details">
+                <apex:pageBlockSection showheader="false" title="Order Information" columns="2">
+                    <apex:selectList id="oType" label="Order Type" value="{!objServiceOrder.CHANNEL_ORDERS__Order_Type__c}" size="1" title="Service Order">
+                        <apex:selectOptions value="{!ServiceOrders}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:inputText label="SFDC Invoice Description" value="{!strOrderNames}"/>
+                    <apex:inputfield label="Related Opportunity" value="{!objServiceOrder.CHANNEL_ORDERS__Related_Opportunity__c}"/>
+                </apex:pageBlockSection>
+            </apex:pageblock>
+  
+            <apex:pageblock title="4. Product Details">
+                <apex:pageBlockSection showheader="false" title="Product Information" columns="1">
+<!--                     <apex:variable value="{!0}" var="count" /> -->
+<!--                     <apex:pageblocktable value="{!productNames}" var="v"> -->
+<!--                         <apex:column headervalue="Product Name"> -->
+<!--                             <apex:outputtext value="{!v.Name}" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column headervalue="Pricing"> -->
+<!--                             <apex:outputtext value="{!objProducts[0].UnitPrice}" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                        <apex:column headervalue="Total Quantity"> -->
+<!--                            <apex:inputtext value="{!objProducts[0].Quantity}" styleClass="quantity{!count}" onkeyup="calculateTotalPrice('quantity{!count}', 'custPrice{!count}', 'totalPrice{!count}')" /> -->
+<!--                        </apex:column> -->
+                        
+<!--                        <apex:column headervalue="Customer Price (Unit/Month)"> -->
+<!--                             <apex:outputtext value="{!objProducts[0].UnitPrice}" styleClass="custPrice{!count}"/> -->
+<!--                        </apex:column> -->
+       
+<!--                        <apex:column headerClass="TableTitle" headervalue="Total Customer Price/Month"> -->
+<!--                           <apex:outputtext value="{!objProducts[0].TotalPrice}" styleClass="totalPrice{!count}" /> -->
+<!--                        </apex:column> -->
+                        
+<!--                        <apex:column headervalue="Estimated Total SFDC Price/Month"> -->
+<!--                           <apex:outputtext value="--" /> -->
+<!--                        </apex:column> -->
+                        
+<!--                        <apex:column > -->
+<!--                           <apex:variable value="{!count+1}" var="count" /> -->
+<!--                        </apex:column> -->
+<!--                     </apex:pageblocktable> -->
+
+<!--                     <apex:variable value="{!0}" var="count" /> -->
+<!--                     <apex:pageblocktable value="{!lineItemList}" var="v"> -->
+<!--                         <apex:column headervalue="Product Name"> -->
+<!--                             <apex:outputtext value="{!v.Partner_Product_Catalog__r.Name}" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column headerValue="App"> -->
+<!--                             <apex:outputText value="{!v.Partner_Product_Catalog__r.CHANNEL_ORDERS__Application__c}" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column headervalue="Pricing"> -->
+<!--                             <apex:outputtext value="{!v.Partner_Product_Catalog__r.CHANNEL_ORDERS__Pricing_Type__c}" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column headervalue="Unit"> -->
+<!--                            <apex:outputText value="{!v.Partner_Product_Catalog__r.CHANNEL_ORDERS__Pricing_Unit__c}" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column headervalue="Total Quantity"> -->
+<!--                             <apex:inputtext value="{!v.Quantity}" styleClass="quantity{!count}" onkeyup="calculateTotalPrice('quantity{!count}', 'custPrice{!count}', 'totalPrice{!count}')" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column headervalue="Customer Price (Unit/Month)"> -->
+<!--                              <apex:outputtext value="{!v.UnitPrice}" styleClass="custPrice{!count}"/> -->
+<!--                         </apex:column> -->
+       
+<!--                         <apex:column headerClass="TableTitle" headervalue="Total Customer Price/Month"> -->
+<!--                            <apex:outputtext value="{!v.TotalPrice}" styleClass="totalPrice{!count}" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column headervalue="Estimated Total SFDC Price/Month"> -->
+<!--                            <apex:outputtext value="--" /> -->
+<!--                         </apex:column> -->
+                        
+<!--                         <apex:column > -->
+<!--                            <apex:variable value="{!count+1}" var="count" />  -->
+<!--                         </apex:column> -->
+<!--                     </apex:pageblocktable> -->
+                    
+                    
+                    <apex:variable value="{!0}" var="count" />
+                    <apex:pageblocktable value="{!productNames}" var="v">
+                        <apex:column headervalue="Product Name">
+                            <apex:outputtext value="{!v.Partner_Product_Catalog__r.Name}" />
+                        </apex:column>
+                        
+                        <apex:column headerValue="App">
+                            <apex:outputText value="{!v.Partner_Product_Catalog__r.CHANNEL_ORDERS__Application__c}" />
+                        </apex:column>
+                        
+                        <apex:column headervalue="Pricing">
+                            <apex:outputtext value="{!v.Partner_Product_Catalog__r.CHANNEL_ORDERS__Pricing_Type__c}" />
+                        </apex:column>
+                        
+                        <apex:column headervalue="Unit">
+                           <apex:outputText value="{!v.Partner_Product_Catalog__r.CHANNEL_ORDERS__Pricing_Unit__c}" />
+                        </apex:column>
+                        
+                        <apex:column headervalue="Total Quantity">
+                            <apex:inputtext value="{!productVsLineItemMap[v].Quantity}" styleClass="quantity{!count}" onkeyup="calculateTotalPrice('quantity{!count}', 'custPrice{!count}', 'totalPrice{!count}')" />
+                        </apex:column>
+                        
+                        <apex:column headervalue="Customer Price (Unit/Month)">
+                             <apex:inputtext value="{!productVsLineItemMap[v].UnitPrice}" styleClass="custPrice{!count}" onkeyup="calculateTotalPrice('quantity{!count}', 'custPrice{!count}', 'totalPrice{!count}')" />
+                        </apex:column>
+       
+                        <apex:column headerClass="TableTitle" headervalue="Total Customer Price/Month">
+                           <apex:outputtext value="{!productVsLineItemMap[v].TotalPrice}" styleClass="totalPrice{!count}" />
+                        </apex:column>
+                        
+<!--                         <apex:column headervalue="Estimated Total SFDC Price/Month"> -->
+<!--                            <apex:outputtext value="--" /> -->
+<!--                         </apex:column> -->
+                        
+                        <apex:column >
+                           <apex:variable value="{!count+1}" var="count" /> 
+                        </apex:column>
+                    </apex:pageblocktable>
+
+
+
+                </apex:pageBlockSection>
+            </apex:pageblock>
+  
+            <apex:pageblock title="5. Enter Service and Order Dates">
+                <apex:pageBlockSection showheader="false" title="Service Information" columns="1">
+                    <apex:inputfield label="ServiceStarDate" value="{!objServiceOrder.CHANNEL_ORDERS__Service_Start_Date__c}"/>
+                    <apex:inputfield label="Date Partner Received Customer Order" value="{!objServiceOrder.CHANNEL_ORDERS__Date_Partner_Received_Customer_Order__c}"/>
+                </apex:pageBlockSection>
+            </apex:pageblock>
+            
+            <apex:commandbutton value="Cancel" action="{!cancel}" immediate="true" style="float: left;height: 44px;width: 15%;background: #ea655b;color: white;font-size: 105%;margin-bottom: 14px;"/>
+            <apex:commandButton action="{!next}" value="Save & Next" id="theButton" style="float: right;height: 44px;width: 21%;background: #89bf3d;color: white;font-size: 105%;margin-bottom: 14px;"/>
+  
+        </apex:outputPanel>
+    </apex:outputPanel>
+  
+    <apex:outputPanel id="panel2" >
+        <apex:outputPanel rendered="{!isEditMode}">
+            <apex:sectionHeader title="Channel Order App - Order Confirmation" />
+            <center>
+            <apex:PanelGrid columns="1" width="600px" style="font-size: 15px">
+                    <apex:outputText style="display: block;margin-bottom: 4%;" value="This order will add the following products to {!objOpp.Account.Name} (Org ID: {!objLicense.sfLma__Subscriber_Org_ID__c}):" />
+                
+                    <apex:repeat value="{!lineItemList}" var="lineItem">
+                        <apex:outputLabel value="{!lineItem.Partner_Product_Catalog__r.Name}" /> <br/>
+                    </apex:repeat>
+                
+                    <apex:outputText style="margin-top: 6%;display:block;" value="By submitting below, you are confirming that a corresponding order was received for this customer. You agree to be bound by the terms and conditions of and be a party to this agreement. You warrant that you are at least eighteen years old and that you have the legal capacity to enter into contracts. If you are entering into this Agreement on behalf of a company, organization, or other entity, then (a) you includes you and that entity, and (b) you represent and warrant that you are an authorized representative of the entity with the authority to bind the entity to this Agreement, and that you agree to this Agreement on the entity’s behalf." />
+            
+                    <apex:panelGrid columns="2">
+                        <apex:commandButton style="width: 175%;height: 175%;background:#ea655b; color: white;" value="Modify" action="{!modify}" rerender="panel1, panel2"/>
+                        
+                        <apex:commandButton style="margin-left: 183%;width: 175%;height: 175%;background: #89bf3d; color: white;" action="{!saveRecords}" value="Confirm and Submit" />
+                    </apex:panelGrid>
+                </apex:PanelGrid>
+            </center>
+        </apex:outputPanel> 
+    </apex:outputPanel>
+ </apex:form>
+ 
+ <script>
+ 
+    function calculateTotalPrice(quantity, customerPrice, totalPrice) {
+        var calculatedTotalPrice = $('.'+quantity).val() * $('.'+customerPrice).val();
+        
+        $('.' + totalPrice).text(calculatedTotalPrice.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+    }
+ 
+ </script>
+ 
+</apex:page>

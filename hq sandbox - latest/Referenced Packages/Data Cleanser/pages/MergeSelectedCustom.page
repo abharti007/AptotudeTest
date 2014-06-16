@@ -1,0 +1,27 @@
+<apex:page standardController="sds__Custom_Duplicate__c" action="{!PageLoad}" recordSetVar="sds__Custom_Duplicate__c" extensions="sds.MergeSelectedCustomController" >
+<apex:sectionHeader title="Merge Records"/>
+   <apex:form id="frmMyDSRules">
+   
+   
+  <apex:actionPoller action="{!StartLeadbatchPoller}" rerender="frmMyDSRules" interval="15"/>
+ 
+        <apex:pageBlock title="Records" mode="Edit">
+         <apex:pageMessages />
+         <apex:pageBlockButtons >
+       
+         <apex:commandButton action="{!CancelRecordMerge}" value="Cancel" />
+         
+         
+         
+         </apex:pageBlockButtons>
+         
+       
+        
+
+                    <img src='{!$Resource.loading}' />Mergeing please wait...
+
+
+           
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,35 @@
+<apex:page tabStyle="Data_Shield__tab">
+<apex:sectionHeader title="Cross Object" subtitle="Scenario"/>
+<apex:form >
+<apex:pageBlock >
+
+<apex:pageBlockButtons >
+<apex:commandButton action="/apex/SDSDataShield" value="Back"/>
+</apex:pageBlockButtons>
+
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Thank you for your interest in Stratus Data Cleanser.  </h1>
+  <p>
+  For your convenience, we are built 100% on the Force.com platform, which means your data never leaves Salesforce.com.
+</p>
+
+<p>
+<b>The Cross Object Feature is available in the <b> PRO Edition</b> of Data 
+Cleanser.</b>  It will allow you to identify Lead records that are also Contact
+and / or Account records. You will have the ability to build scenaros to
+identify these duplicates based on the criteria that you choose. A list will
+then be available for you to convert the Leads to Contacts/Accounts.  </p>
+<p>
+<p>
+There is a also a Visual Page that you can add to the Lead
+Record Page Layout that will show the user if there is a 'Cross Object'
+duplicate record. This will allow the users to convert the Lead if applicable. 
+
+</p>
+<p>
+For more information on this feature, please contact us at <a href="mailto:sales@stratuscloudsolutions.com">sales@stratuscloudsolutions.com</a> and request a demo. </p>
+</p>
+<br />
+
+ </apex:pageBlock></apex:form>
+</apex:page>

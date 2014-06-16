@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Convertable__c</fullName>
+        <defaultValue>true</defaultValue>
+        <label>Convertable?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Created_by_Cirrus_Insight__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Created by Cirrus Insight</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Current_CRM_Database__c</fullName>
+        <label>Current Solution</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ACT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACTCRE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ascendix</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ClientLook</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Goldmine</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple CRM/Database</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outlook/Excel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Power Broker</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PropertyBase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proprietary DB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Realhound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REApplications</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>REthink</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salesforce.com</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Deskcom__twitter_username__c</fullName>
+        <label>Twitter Username</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>HubSpot_Inc__HubSpot_Intelligence__c</fullName>
+        <label>HubSpot Intelligence</label>
+        <referenceTo>HubSpot_Inc__HubSpot_Intelligence__c</referenceTo>
+        <relationshipLabel>Leads</relationshipLabel>
+        <relationshipName>Leads</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>HubSpot_Inc__NumberofLocations__c</fullName>
+        <label>Number of Locations</label>
+        <precision>3</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>HubSpot_Inc__SICCode__c</fullName>
+        <label>SIC Code</label>
+        <length>15</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <description>Any relevant notes about the lead.</description>
+        <inlineHelpText>Any relevant notes about the lead.</inlineHelpText>
+        <label>Notes</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Possible_Licenses__c</fullName>
+        <label>Possible Licenses</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Primary Contact</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Specialty__c</fullName>
+        <label>Specialty</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Tenant Representation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Landlord Representation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Investment Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>General Brokerage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X10_24_Target__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>10-24 Target</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sds__Allow_Merge__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Allow Merge</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sds__CurrentGenerators__c</fullName>
+        <label>Current Generator(s)</label>
+        <length>100</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>sds__Duplicate_Key__c</fullName>
+        <label>Duplicate Key</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>sds__Master_Score__c</fullName>
+        <defaultValue>0</defaultValue>
+        <label>Master Score</label>
+        <precision>18</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>sds__Not_duplicate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Not duplicate</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sds__NumberofLocations__c</fullName>
+        <label>Number of Locations</label>
+        <precision>3</precision>
+        <scale>0</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>sds__Picklist_values__c</fullName>
+        <label>Picklist values</label>
+        <picklist>
+            <picklistValues>
+                <fullName>test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>why not working testing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A. Very Good Student</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B. Good Student</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C. Average Student</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sds__Primary__c</fullName>
+        <label>Primary</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sds__ProductInterest__c</fullName>
+        <label>Product Interest</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GC1000 series</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GC5000 series</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GC3000 series</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sds__Product_Code__c</fullName>
+        <label>Product Code</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ABC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DEF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GHI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>test by not working</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>sds__SICCode__c</fullName>
+        <label>SIC Code</label>
+        <length>15</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>sds__Sub_set_Date__c</fullName>
+        <label>Sub set Date</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>sds__Warning__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Warning</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sds__sDuplicate_Key__c</fullName>
+        <label>sDuplicate Key</label>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>sds__test_Picklist__c</fullName>
+        <label>test Picklist</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1: Apple-sause</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2: Island of Ecxelland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3: nothing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Subscriber_Org_Type__c</fullName>
+        <description>The Edition of this org. UE, EE, PE, TE, Free</description>
+        <label>Subscriber Org Type</label>
+        <length>32</length>
+        <type>Text</type>
+    </fields>
+    <webLinks>
+        <fullName>APXTConga4__Conga_Mail_Merge</fullName>
+        <availability>online</availability>
+        <description>*** This is an example of a simple Conga Composer button. *** 
+
+Copy the URL from this button and paste it into your own custom button or link. Then add optional parameters to finely tune the button&apos;s behavior. See the Conga Configuration Guide for details.</description>
+        <displayType>button</displayType>
+        <height>450</height>
+        <linkType>url</linkType>
+        <masterLabel>Conga Composer</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>https://www.appextremes.com/apps/Conga/PointMerge.aspx
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!Lead.Id}</url>
+        <width>625</width>
+    </webLinks>
+    <webLinks>
+        <fullName>AltavistaNews</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Altavista News</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://news.altavista.com/search?nc=0&amp;q={!Lead_Company}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>http://maps.google.com/maps?f=q&amp;hl=en&amp;q={!Lead_Street}+{!Lead_City}+{!Lead_State}&amp;om=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleNews</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google News</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>http://www.google.com/news?&amp;q={!Lead_Company}&amp;btnG=Search+News</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleSearch</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Search</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>http://www.google.com/search?q={!Lead_Company}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>HooversProfile</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Hoovers Profile</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://search.hoovers.com/cgi-bin/hol_search?which=company&amp;query_string={!Lead_Company}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Edit</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Mass Edit</masterLabel>
+        <openType>sidebar</openType>
+        <page>MassEditLead</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Update</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Mass Update</masterLabel>
+        <openType>sidebar</openType>
+        <page>MassUpdateLead</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>SendGmail</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasScrollbars>true</hasScrollbars>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Send Gmail</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>https://mail.google.com/mail?view=cm&amp;tf=0&amp;to={!Lead_Email}&lt;{!Lead_LastName}, {!Lead_FirstName}&gt;&amp;tf=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>YahooMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Yahoo Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://maps.yahoo.com/py/maps.py?cn={!Lead_Country}&amp;csz={!Lead_City}+{!Lead_State}+{!Lead_PostalCode}+&amp;addr={!Lead_Address}</url>
+    </webLinks>
+</CustomObject>

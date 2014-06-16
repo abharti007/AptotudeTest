@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <fullName>InternalIdeasIdeaRecordType</fullName>
+        <active>true</active>
+        <description>Record Type used to associate ideas with a specific community</description>
+        <label>Internal Ideas: Idea Record Type</label>
+        <picklistValues>
+            <picklist>Categories</picklist>
+            <values>
+                <fullName>Marketing - Blog Posts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing - White Papers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Onboarding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product - Brokerage Cloud %28CREB%2FApto%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product - Distillery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Support</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suggested</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Under Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Record_type_for_community_09a30000000Tn1bAAC_entity_Idea</fullName>
+        <active>true</active>
+        <description>Record type used to associate Idea with a specific zone</description>
+        <label>Customer Community: Idea Record Type</label>
+        <picklistValues>
+            <picklist>Categories</picklist>
+            <values>
+                <fullName>Marketing - Blog Posts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing - White Papers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Onboarding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product - Brokerage Cloud %28CREB%2FApto%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product - Distillery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Support</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suggested</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Under Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <validationRules>
+        <fullName>Category_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( Categories )</errorConditionFormula>
+        <errorMessage>Please pick one category. It&apos;s really not that hard.</errorMessage>
+    </validationRules>
+</CustomObject>

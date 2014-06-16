@@ -1,0 +1,91 @@
+<apex:page extensions="sds.LeadCrossObject" standardController="lead">
+<apex:form >
+  <apex:PageBlock rendered="{!NOT(ISNULL(ListContact))}" >
+
+<apex:PageMessages ></apex:PageMessages>
+<apex:pageBlockButtons >
+<input type="button" class="btn"  value="Convert" onclick="ConvertClick();" />
+
+</apex:pageBlockButtons>
+
+    <apex:PageBlockTable var="Contact"   value="{!ListContact}" id="theTable" rowClasses="odd,even"
+                        styleClass="tableClass">
+                        
+         <apex:column >
+             <apex:facet name="header">Contact</apex:facet>
+ 
+               <input type="radio" onClick="SelectedContact('{!Contact.Id}')"  name="sex" value="male" /> 
+
+        </apex:column>
+        
+        <apex:column >
+<apex:facet name="header">Contact Name</apex:facet>
+<a href="javascript: void(0)" onclick="stopwatch('/{!Contact.Id}')">{!Contact.Name}</a>
+
+</apex:column>
+
+
+         
+<apex:column value="{!Contact.Phone}"></apex:column>
+<apex:column value="{!Contact.Email}"></apex:column>
+<apex:column value="{!Contact.Account.Name}"></apex:column>
+    
+        
+    </apex:PageBlockTable>
+    
+     <apex:inputHidden value="{!SelectedId}" id="hSelectedId"/>
+    <apex:inputHidden value="{!LeadId}" id="hLeadId"/>
+ 
+         <script type="text/javascript">
+            function SelectedContact(userMasterId)
+            {                    
+                document.getElementById("{!$Component.hSelectedId}").value = userMasterId;                
+                return true;
+            } 
+            
+            function stopwatch(NewURL) 
+            {
+            //alert(NewURL);
+             parent.window.location.href=NewURL;
+             
+             }
+            
+        function  ConvertClick()
+         {
+                 if(document.getElementById("{!$Component.hSelectedId}").value!=null
+                 && document.getElementById("{!$Component.hLeadId}").value!=null)
+                {
+                   //var str1 = new String(somestring.value);
+                   
+                    var leadid=new String(document.getElementById("{!$Component.hLeadId}").value);
+                    var contactid=new String(document.getElementById("{!$Component.hSelectedId}").value);
+                    Convert('/apex/leadconvert?leadid='+leadid+'&contactid='+contactid);
+                
+                }
+                else
+                {
+                    alert('Please select Contact');
+                }
+         }
+        function Convert(NewURL) 
+        {
+            window.top.location.href=NewURL;
+        // parent.window.location.href=NewURL;
+         
+        }
+
+
+
+</script>
+
+</apex:PageBlock>
+  <apex:PageBlock rendered="{!ISNULL(ListContact)}" >
+  <apex:pageBlockSection columns="1">
+  <b>No Cross Objects</b>
+  </apex:pageBlockSection>
+  </apex:PageBlock>
+  
+  
+</apex:form>
+
+</apex:page>

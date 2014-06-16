@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Case_Category__c</fullName>
+        <label>Case Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Chatter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Create/Modify Layout</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creating/Modifying Fields</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creating Views</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Templates</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Google Apps</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Import Wizard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manage Users</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outlook</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reports + Dashboards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Security Settings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Third Party</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Workflow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Contact_First_Name__c</fullName>
+        <formula>Contact.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact First Name</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Escalate_to__c</fullName>
+        <label>Escalate to</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Eric Bouchard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FbD_CM__Merge_To_Case__c</fullName>
+        <label>Merge To Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Cases</relationshipLabel>
+        <relationshipName>Cases</relationshipName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Last_Received_Email__c</fullName>
+        <label>Last Received Email</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Last_Sent_Email__c</fullName>
+        <label>Last Sent Email</label>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Owner_ID__c</fullName>
+        <formula>OwnerId</formula>
+        <label>Owner ID</label>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Time_Open__c</fullName>
+        <formula>ClosedDate -  CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Time Open</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>days_awaiting_response__c</fullName>
+        <formula>Last_Sent_Email__c -  Last_Received_Email__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days awaiting response</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <validationRules>
+        <fullName>Contact_and_Account_Requirement</fullName>
+        <active>false</active>
+        <description>Before you can close a case you must assign a Contact &amp; Account to that case.</description>
+        <errorConditionFormula>AND( CreatedDate  &lt; NOW(), Contact.LastName=&quot;&quot;,  Account.Name=&quot;&quot;)</errorConditionFormula>
+        <errorMessage>In order to close a case you must enter a Contact or Account.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>If_case_not_data_migration_case_category</fullName>
+        <active>false</active>
+        <errorConditionFormula>and(  CreatedDate  &lt; Now()+0.01, Not(ispickval( Type , &quot;Data Migration&quot;)),  text(Case_Category__c)=&quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>Case_Category__c</errorDisplayField>
+        <errorMessage>You must enter a Case Category is the Case Reason is not Data Migration</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Type_Required</fullName>
+        <active>false</active>
+        <errorConditionFormula>and(  CreatedDate &lt; NOW()+0.01, text(Type)=&quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>Type</errorDisplayField>
+        <errorMessage>You must enter a type.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>APXTConga4__Conga_Mail_Merge</fullName>
+        <availability>online</availability>
+        <description>*** This is an example of a simple Conga Composer button. *** 
+
+Copy the URL from this button and paste it into your own custom button or link. Then add optional parameters to finely tune the button&apos;s behavior. See the Conga Configuration Guide for details.</description>
+        <displayType>button</displayType>
+        <height>450</height>
+        <linkType>url</linkType>
+        <masterLabel>Conga Composer</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <url>https://www.appextremes.com/apps/Conga/PointMerge.aspx
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_80}
+&amp;id={!Case.Id}</url>
+        <width>625</width>
+    </webLinks>
+    <webLinks>
+        <fullName>FbD_CM__Merge_Case</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Merge Case</masterLabel>
+        <openType>replace</openType>
+        <page>FbD_CM__MergeCaseManager</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>FbD_CM__Merge_Cases</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Merge Cases</masterLabel>
+        <openType>replace</openType>
+        <page>FbD_CM__MultiMergeCaseManager</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Edit</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Mass Edit</masterLabel>
+        <openType>sidebar</openType>
+        <page>MassEditCase</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Update</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Mass Update</masterLabel>
+        <openType>sidebar</openType>
+        <page>MassUpdateCase</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+</CustomObject>
